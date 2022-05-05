@@ -1,0 +1,555 @@
+{% extends 'initial/base.html' %}
+{% load static %}
+
+
+{% block title %} {{ livro }} {% endblock %}
+
+
+{% block index %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.body
+{
+ 
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.section-livro-details
+{
+  position: relative;
+  margin-top: -15px;
+}
+
+  .slides li
+  {
+    position: relative;
+    top: 10px;
+  }
+
+.banner
+{
+  position: relative;
+	width: 100%;
+	height: 85vh;	
+	background: linear-gradient( to bottom, rgba(26, 20, 0, 0.9) 0%, rgba(26, 20, 0, 0.9)),url('{{ livro.Poster }}');
+	background-size: cover;
+}
+
+.progression-studios-slider-modificado
+{
+  max-width: 570px;
+  margin-left: 20px;
+  position: relative;
+  z-index: 10;
+
+}
+
+.poster-url
+{
+  width: 90px;
+  height: 90px;
+}
+
+.icons .fa-heart:hover::before
+{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f004";  
+  
+}
+
+.icons i
+{
+  font-size: 28px;
+  margin-right: 28px;
+  color: #fff;
+}
+
+.icons i:hover
+{
+  color: #e4bb23;
+}
+
+.btn-outline-warning
+{
+    border: 1px solid #e4bb23!important;
+    background: transparent!important;
+    font-size: 16px!important;
+    margin-right: 90px;
+    color: rgba(255,255,255, 0.7);
+}
+.btn-outline-warning i
+{
+  font-size: 19px;
+  
+}
+.btn-outline-warning:hover
+{
+  background: #e4bb23!important;
+}
+
+
+
+.card {
+    border-radius: 5px;
+    background-color: #fff;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+.rating-box {
+    width: 190px;
+    height: 190px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #FBC02D;
+    color: #fff
+}
+
+.rating-box .pt-4
+{
+  font-size: 4.5rem;
+}
+.rating-label {
+    font-weight: bold
+}
+
+.rating-bar {
+    width: 300px;
+    padding: 8px;
+    border-radius: 5px
+}
+
+.bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 5px
+}
+
+.bar-5 {
+    width: 70%;
+    height: 13px;
+    background-color: #FBC02D;
+    border-radius: 20px
+}
+
+.bar-4 {
+    width: 30%;
+    height: 13px;
+    background-color: #FBC02D;
+    border-radius: 20px
+}
+
+.bar-3 {
+    width: 20%;
+    height: 13px;
+    background-color: #FBC02D;
+    border-radius: 20px
+}
+
+.bar-2 {
+    width: 10%;
+    height: 13px;
+    background-color: #FBC02D;
+    border-radius: 20px
+}
+
+.bar-1 {
+    width: 0%;
+    height: 13px;
+    background-color: #FBC02D;
+    border-radius: 20px
+}
+
+td {
+    padding-bottom: 10px
+}
+
+.star-active {
+    color: #FBC02D;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.star-active:hover {
+    color: #F9A825;
+    cursor: pointer
+}
+
+.star-inactive {
+    color: #CFD8DC;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.blue-text {
+    color: #0091EA
+}
+
+.content {
+    font-size: 18px
+}
+
+.profile-pic {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    margin-right: 30px
+}
+
+.pic {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px
+}
+
+.vote {
+    cursor: pointer
+}
+
+.dashboard-container h5
+{
+  font-size: 16px!important;
+}
+
+.rating-user h6
+{
+  font-size: 16px!important;
+  margin-top: -5px;
+}
+
+.movie-details-section h2
+{
+  font-family: 'Poppins', sans-serif;
+}
+
+.movie-details-section p
+{
+  font-family: 'Poppins', sans-serif;
+}
+</style>
+
+<section class="section section-livro-details">
+			
+  <div class="flexslider progression-studios-dashboard-slider">
+    <ul class="slides">
+      <li class="progression_studios_animate_in">
+        <div class="progression-studios-slider-dashboard-image-background banner" >
+          <div class="progression-studios-slider-display-table">
+            <div class="progression-studios-slider-vertical-align">            
+              <div class="container">              
+                <div class="progression-studios-slider-modificado">
+                  <div class="progression-studios-slider-caption-align">
+                    <h6 class="light-fonts-pro mt-5">Livro</h6>                    
+                    <h2 class="light-fonts-pro"><a href="dashboard-movie-profile.html">{{ livro |truncatechars:40 }}</a></h2>
+                    <ul class="progression-studios-slider-meta">
+                      <li>{{ livro.Publish |date}} {% for idioma in livro.Linguagem.all %}( {{ idioma.sigla }} ){% endfor %}</li>
+                      <li>{{livro.Paginas }} Paginas</li>
+                      {% for genero in livro.Genero.all %}
+                      <li>{{ genero }},</li>
+                      {% endfor %}
+                    </ul>
+                    <p class="progression-studios-slider-description light-fonts-pro text-justify">
+                      {{ livro.Descricao |truncatechars:190 }}
+                    </p>
+                    
+                    <a class="btn btn-outline-warning" href="{% url 'livros:add_leitura' livro.id  %}"><i class="fab fa-leanpub"></i>Ler o livro</a>
+                    <a class="icons" id="popoverData"  data-content="Adicionar aos favoritos" rel="popover" data-placement="bottom"  data-trigger="hover"  href="{% url 'livros:add_favoritos' livro.id %}"><i class="far fa-heart"></i></a>
+                    <a class="icons"  id="popoverPlaylist"  data-content="Adicionar a uma Playlist" rel="popover" data-placement="top"  data-trigger="hover"  href="#"><i class="fas fa-list-ol"></i></a>
+                    <a class="icons" id="popoverOption"  data-content="Adicionar à sua lista de interesses" rel="popover" data-placement="right"  data-trigger="hover" href="#"><i class="fas fa-bookmark"></i></a>
+                
+                    <div class="clearfix"></div>
+                   
+                  </div><!-- close .progression-studios-slider-caption-align -->
+                </div><!-- close .progression-studios-slider-caption-width -->
+              
+              </div><!-- close .container -->
+              <img style="position: absolute; width: 190px; top: 155px; margin-left: 900px; border-radius: 17px;"  class = "poster-url" src="{{ livro.Poster_url }}" alt="">
+            
+            </div><!-- close .progression-studios-slider-vertical-align -->
+          </div><!-- close .progression-studios-slider-display-table -->
+        
+          <div class="progression-studios-slider-mobile-background-cover-dark"></div>
+        </div><!-- close .progression-studios-slider-image-background -->
+      </li>				
+    </ul>			
+  </ul>
+</div><!-- close .progression-studios-slider - See /js/script.js file for options -->
+
+        
+<div id="movie-detail-rating">
+      <div class="dashboard-container">
+        <div class="row">
+          <div class="col-sm">
+            <h5>Avalie: <span>{{ livro |truncatechars:60 }}</span> </h5>
+            <form action="{% url 'livros:add_review' livro.id  %}" method="POST">
+            	{% csrf_token %}							
+						<div class="rating-pro">
+							 <label>
+							   <button type="submit" name="rate" value="10" id="rangeInput" title="10 stars"> 10</button>
+							 </label>
+							<label>
+							  <button type="submit" name="rate" value="9" id="rangeInput" title="9 stars"> 9</button>
+							</label>
+							<label>
+							  <button type="submit" name="rate" value="8" id="rangeInput" title="8 stars"> 8</button>
+							</label>
+							<label>
+							  <button type="submit" name="rate" value="7" id="rangeInput" title="7 stars"> 7</button>
+							</label>
+						   <label>
+							 <button type="submit" name="rate" value="6" id="rangeInput" title="6 stars"> 6</button>
+						   </label>
+						  <label>
+							<button type="submit" name="rate" value="5" id="rangeInput" title="5 stars"> 5</button>
+						  </label>
+						  <label>
+							<button type="radio" name="rate" value="4" id="rangeInput" title="4 stars"> 4</button>
+						  </label>
+						  <label>
+							<button type="submit" name="rate" value="3" id="rangeInput" title="3 stars"> 3</button>
+						  </label>
+						  <label>
+							<button type="submit" name="rate" value="2" id="rangeInput" title="2 stars"> 2</button>
+						  </label>
+						  <label>
+							<button type="submit" name="rate" value="1" id="rangeInput" title="1 star"> 1</button>
+						  </label>
+						</div>
+          </form>
+            
+          </div>
+          <div class="col-sm rating-user">
+            <h6>Avaliação do utilizador</h6>
+              <div
+                class="circle-rating-pro"
+                data-value="{{ livro.Average_Count}}"
+                data-animation-start-value="{{ livro.Average_Count}}"
+                data-size="40"
+                data-thickness="3"
+                data-fill="{
+                  &quot;color&quot;: &quot;#42b740&quot;
+                }"
+                data-empty-fill="#def6de"
+                data-reverse="true"
+              ><span style="color:#42b740;">{{ livro.Average_Rating }}</span></div>
+            <div class="clearfix"></div>
+          </div>
+        </div><!-- close .row -->
+      </div><!-- close .dashboard-container -->
+</div><!-- close #movie-detail-rating -->
+    
+<div class="dashboard-container">
+      
+      
+<div class="movie-details-section">
+        <h2>Descrição</h2>
+        <p class="text-justify ">
+          {{ livro.Descricao }}
+        </p>
+</div><!-- close .movie-details-section -->
+
+<div class="movie-details-section">
+  <div class="col-xl-12 col-lg-12 col-md-10 col-12 text-center mb-5">
+    <div class="card">
+        <div class="row justify-content-left d-flex">
+            <div class="col-md-4 d-flex flex-column">
+                <div class="rating-box mt-5">
+                  {% if livro.Average_Rating <= 0 %}
+                    <h1 class="pt-4">0</h1>
+                    {% elif livro.Average_Rating == None  %}
+                    <h1 class="pt-4">0</h1>
+                    {% else %}
+                    <h1 class="pt-4">{{ livro.Average_Rating }}</h1>
+                    {% endif %}
+                    <p class="">o maximo é 10</p>
+                </div>
+                <div> <span class="fa fa-star star-active mx-1"></span> <span class="fa fa-star star-active mx-1"></span> <span class="fa fa-star star-active mx-1"></span> <span class="fa fa-star star-active mx-1"></span> <span class="fa fa-star star-inactive mx-1"></span> </div>
+            </div>
+            <div class="col-md-8">
+                <div class="rating-bar0 justify-content-center">
+                    <table class="text-left mx-auto">
+                      {% if reviews %}
+                      {% for review in reviews %}
+                        {% if review.rate == '10' %}
+                        <tr>
+                            <td class="rating-label">10 </td>
+                            <td class="rating-bar">
+                                <div class="bar-container">
+                                    <div class="bar-5"></div>
+                                </div>
+                            </td>
+                            <td class="text-right">{{ review.rate.count }}</td>
+                        </tr> 
+                       {% else %}
+                       <tr>
+                        <td class="rating-label">10 </td>
+                        <td class="rating-bar">
+                          <div class="bar-container">
+                              <div class="bar-1"></div>
+                          </div>
+                        </td>
+                        <td class="text-right">0</td>
+                        </tr> 
+                        {% endif %}
+                        {% if review.rate == '9' %}                    
+                        <tr>
+                            <td class="rating-label">9</td>
+                            <td class="rating-bar">
+                                <div class="bar-container">
+                                    <div class="bar-4"></div>
+                                </div>
+                            </td>
+                            <td class="text-right">{{ review.rate.count }}</td>
+                        </tr> 
+                         {% else %}
+                        <tr>
+                         <td class="rating-label">9</td>
+                         <td class="rating-bar">
+                           <div class="bar-container">
+                               <div class="bar-1"></div>
+                           </div>
+                         </td>
+                         <td class="text-right">0</td>
+                         </tr>                          
+                        {% endif %}
+                        {% if review.rate == '8' %} 
+                        <tr>
+                            <td class="rating-label">8</td>
+                            <td class="rating-bar">
+                                <div class="bar-container">
+                                    <div class="bar-3"></div>
+                                </div>
+                            </td>
+                            <td class="text-right">10</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                         <td class="rating-label">8</td>
+                         <td class="rating-bar">
+                           <div class="bar-container">
+                               <div class="bar-1"></div>
+                           </div>
+                         </td>
+                         <td class="text-right">0</td>
+                         </tr>
+                        {% endif %}
+                        <tr>
+                            <td class="rating-label">7</td>
+                            <td class="rating-bar">
+                                <div class="bar-container">
+                                    <div class="bar-2"></div>
+                                </div>
+                            </td>
+                            <td class="text-right">3</td>
+                        </tr>
+                        <tr>
+                            <td class="rating-label">6</td>
+                            <td class="rating-bar">
+                                <div class="bar-container">
+                                    <div class="bar-1"></div>
+                                </div>
+                            </td>
+                            <td class="text-right">0</td>
+                        </tr>
+                        <tr>
+                          <td class="rating-label">4</td>
+                          <td class="rating-bar">
+                              <div class="bar-container">
+                                  <div class="bar-1"></div>
+                              </div>
+                          </td>
+                          <td class="text-right">0</td>
+                        </tr>
+                        <tr>
+                          <td class="rating-label">3</td>
+                          <td class="rating-bar">
+                              <div class="bar-container">
+                                  <div class="bar-1"></div>
+                              </div>
+                          </td>
+                          <td class="text-right">0</td>
+                        </tr>
+                        <tr>
+                          <td class="rating-label">2</td>
+                          <td class="rating-bar">
+                              <div class="bar-container">
+                                  <div class="bar-1"></div>
+                              </div>
+                          </td>
+                          <td class="text-right">0</td>
+                        </tr>
+                        <tr>
+                          <td class="rating-label">1</td>
+                          <td class="rating-bar">
+                              <div class="bar-container">
+                                  <div class="bar-1"></div>
+                              </div>
+                          </td>
+                          <td class="text-right">0</td>
+                        </tr> 
+                        {% endfor %}
+                      {% endif %}          
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        
+    </div>
+    <div class="card">
+      	
+      <div class="row d-flex">
+        <div class=""> <img class="profile-pic" src="https://i.imgur.com/V3ICjlm.jpg"> </div>
+        <div class="d-flex flex-column">
+            <h3 class="mt-2 mb-0">Vikram jit Singh</h3>
+            <div >
+                <p  class="text-left">  
+                  <div style="float: left; left: 10px; position: relative;"
+                  class="circle-rating-pro"
+                  data-value="0.53"
+                  data-animation-start-value="0.53"
+                  data-size="32"
+                  data-thickness="3"
+                  data-fill="{
+                    &quot;color&quot;: &quot;#ff4141&quot;
+                  }"
+                  data-empty-fill="#ffe1e1"
+                  data-reverse="true"
+                ><span style="color:#ff4141;">5.3</span></div> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span></p>
+            </div>
+        </div>
+        <div class="ml-auto">
+            <p class="text-muted pt-5 pt-sm-3">22, outubro,  2017</p>
+        </div>            
+    </div>
+    <div class="row text-left">
+        <h4 class="blue-text mt-3">"Contém Spoiler incrível para experimentar"</h4>
+        <p class="content">Eles não fazem muitos livros de ficção científica atualmente. Esta foi uma surpresa agradável ao longo de todo o livro. Eu realmente gosto desse livro.</p>
+    </div>
+    <div class="row text-left"> <img class="pic" src="https://m.media-amazon.com/images/I/81OB0tom28L._AC_UL320_.jpg"> <img class="pic" src="https://m.media-amazon.com/images/I/81qsMKdJYRL._AC_UL320_.jpg"> <img class="pic" src="https://m.media-amazon.com/images/I/8195vftI5IL._AC_UL320_.jpg"> </div>
+    <div class="row text-left mt-4">
+        <div class="like mr-3 vote"> <img src="https://i.imgur.com/mHSQOaX.png"><span class="blue-text pl-2">20</span> </div>
+        <div class="unlike vote"> <img src="https://i.imgur.com/bFBO3J7.png"><span class="text-muted pl-2">4</span> </div>
+    </div>
+    
+    </div>
+</div>
+</div>
+</section>
+
+
+
+
+{% endblock  %}

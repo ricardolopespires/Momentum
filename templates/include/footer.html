@@ -1,0 +1,108 @@
+{% load static %}
+
+<style>
+footer
+{
+    position: relative;
+	width: 100%;
+	height: 35vh;
+	background: rgb(15,15,54);	
+	background: linear-gradient( to bottom,rgba(15, 15, 54, 0.9),rgba(0,0,0,0.9)),url('https://media.gazetadopovo.com.br/2016/02/8b6978781ff2b9fbdb5059127fe87bed-gpMedium.jpg');
+	background-size: cover;
+    color: #fff;
+    t
+    
+}
+
+.heading {
+    font-family: 'Titillium Web', sans-serif;
+    color: #bc9a1d
+}
+
+.divider {
+    border-top: 2px solid rgba(189, 196, 203, 0.5);
+}
+
+.footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+
+#id_email {
+    background-color: #222222;
+    border: 1px solid #636161;
+    font-size: 0.75rem
+}
+
+
+
+.btn {
+    background-color: #bc9a1d;
+    font-size: 0.78rem;
+    border: 0px
+}
+</style>
+
+
+<footer>
+<div  class="container-fluid ">
+      <div class="row">
+          <div class="col-12 mb-4">
+              <div class="row">
+                  <div class="col-md-4">
+                    <div class="footer-text pull-left mt-5 mr-5 ml-5">
+                        <div class="d-flex">                            
+                            <h1 class="nav__logo" >Momentum<span class="ponto">.</span></h1>
+                        </div>
+                        <p class="card-text text-justify">A Momentum é uma base de dados grátis e de código aberto sobre livros e livros que tornaram-se filmes.</p>                  
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-sm-4 col-xs-4 footer mt-5">
+                    <h5 class="heading">Junte-se</h5>
+                    <ul>
+                        <li>Crie Listas personalizadas</li>
+                        <li>Seja um do Colaborador</li>
+                        <li>Adicionar um novo Livros</li>
+                        <li>Adicionar um novo Filme</li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-4 footer mt-5">
+                    <h5 class="heading">Comunidade</h5>
+                    <ul class="card-text">
+                        <li>Ranking de colaboradores</li>
+                        <li>Discussões</li>
+                        <li>Smart Office</li>
+                        <li>Retail</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-3 footer mt-5">
+                    <h6 class="my-3"> Assine o boletim informativo</h6>
+                    <form action="#" method="post">
+                        {% csrf_token %}
+                    <div class="row d-flex my-2 pr-2 pr-md-5 div1">
+                        <div class="col-9"><input class="form-control" type="email" name="email" maxlength="254" required id="id_email" placeholder="Digite seu email"></div>
+                        <div class="col-3 px-0"> <button type="submit" class="btn text-white px-4 py-2"> inscrever</button> </div>
+                    </div>
+                    </form>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="divider mb-4"> </div>
+      <div class="row" style="font-size:10px;">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="pull-left">
+                  <p><i class="fa fa-copyright"></i> 2020 thezpdesign</p>
+              </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="pull-right mr-4 d-flex policy">
+                  <div>Terms of Use</div>
+                  <div>Privacy Policy</div>
+                  <div>Cookie Policy</div>
+              </div>
+          </div>
+      </di>
+</div>
+</footer>

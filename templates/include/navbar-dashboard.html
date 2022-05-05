@@ -1,0 +1,133 @@
+{% load static %}
+<header id="videohead-pro" class="sticky-header">
+    <div id="video-logo-background"><a href="#" class="nav__logo">Momentum<span class="ponto">.</span></a></div>
+              
+    <div id="video-search-header">
+                  <div id="search-icon-more"></div>
+                  <form action="" method="GET">
+                    <input type="text" name="search" placeholder="Search livros ou filmes" aria-label="Search">
+                  </form>					 
+                  <div id="video-search-header-filtering">
+                      <form id="video-search-header-filtering-padding" method="GET" action=".">							  
+                          <div class="row">
+                              <div class="col-sm extra-padding">
+                                  <h5>Tipo:</h5>
+                                  
+                                  <div class="row">
+                                      <div class="col-sm">
+                                          <label  class="checkbox-pro-container">Filmes
+                                            <input type="checkbox" checked="checked" id="movies-type">
+                                            <span class="checkmark-pro"></span>
+                                          </label>
+                                  
+                                          <label class="checkbox-pro-container">TV Séries
+                                            <input type="checkbox" id="tv-type">
+                                            <span class="checkmark-pro"></span>
+                                          </label>
+                                          <label class="checkbox-pro-container">Documentário
+                                            <input type="checkbox" id="documentary-type">
+                                            <span class="checkmark-pro"></span>
+                                      </div><!-- close .col -->										  
+                                  </div><!-- close .row -->
+                                  
+                                  <div class="dotted-dividers-pro"></div>
+                              </div><!-- close .col -->
+                              <div class="col-sm extra-padding">
+                                <h5>Gêneros:</h5>
+                                <select class="custom-select"  name="generos">
+                                  <option selected>Seleciona o Gênero</option>
+                                  <option value="Ação">Ação</option>
+                                  <option value="Aventura">Aventura</option>
+                                  <option value="Animação">Animação</option>									
+                                  <option value="Action & Adventure">Action & Adventure</option>
+                                  <option value="Cinema TV">Cinema TV</option>
+                                  <option value="Crime">Crime</option>
+                                  <option value="Comédia">Comédia</option>
+                                  <option value="Documentário">Documentário</option>
+                                  <option value="Drama">Drama</option>
+                                  <option value="Fantasia">Fantasia</option>
+                                  <option value="Família">Família</option>
+                                  <option value="Faroeste">Faroeste</option>
+                                  <option value="Ficção científica">Ficção científica</option>
+                                  <option value="Guerra">Guerra</option>
+                                  <option value="News">News</option>
+                                  <option value="Mistério">Mistério</option>
+                                  <option value="Música">Música</option>
+                                  <option value="Horror">Horror</option>
+                                  <option value="Romance">Romance</option>
+                                  <option value="Reality">Reality</option>
+                                  <option value="Sci-Fi & Fantasy">Sci-Fi & Fantasy</option>
+                                  <option value="Soap">Soap</option>
+                                  <option value="Talk">Talk</option>
+                                  <option value="Terror">Terror</option>
+                                  <option value="Thriller">Thriller</option>
+                                  <option value="Kids">Kids</option>
+                                  <option value="War & Politics">War & Politics</option>									  
+                                </select>
+                                <div class="dotted-dividers-pro"></div>
+                            </div><!-- close .col -->
+                              <div class="col-sm extra-padding">
+                                  <h5>Idioma:</h5>
+                                  <select name="idioma" class="custom-select">
+                                    <option selected>Paises</option>
+                                    {% for idioma in language %}
+                                    <option value="{{ idioma.id }}">{{ idioma.countrie }}</option>
+                                    {% endfor %}
+                                  </select>
+                                  <div class="dotted-dividers-pro"></div>
+                              </div><!-- close .col -->
+                              <div class="col-sm extra-padding extra-range-padding">
+                                  <h5>Classificação média::</h5>
+                              <input name="classificacao" class="range-example-rating-input" type="text" min="0" max="10" value="4,10" step="1" />
+                                  <!-- JS is under /js/script.jss -->
+                              </div><!-- close .col -->
+                          </div><!-- close .row -->
+                          <div id="video-search-header-buttons">								  
+                              <input style="background-color: #3db13d; color: #fff; padding: 10px;"  type="submit" class="btn btn-green-pro" value="Pesquisa de filtro">
+                              <a href="#!" class="btn">Redefinir</a>
+                          </div><!-- close #video-search-header-buttons -->
+                      </form><!-- #video-search-header-filtering-padding -->
+                  </div><!-- close #video-search-header-filtering -->
+    </div><!-- close .video-search-header -->
+              
+    <div id="mobile-bars-icon-pro" class="noselect"><i class="fas fa-bars"></i></div>
+              
+    <div id="header-user-profile">
+                  <div id="header-user-profile-click" class="noselect">
+                      {% if user.img %}
+                      <img src="{{ user.img.url }}" alt="{{ user }}">
+                     {% else %}
+                     <img src="{% static 'images/demo/user-profile.jpg' %}" alt="img">
+                     {% endif %}
+                      <div id="header-username">{{ request.user|title  }}</div><i class="fas fa-angle-down"></i>
+                  </div><!-- close #header-user-profile-click -->
+                  <div id="header-user-profile-menu">
+                      <ul>
+                          <li><a href="#"><span class="fa fa-user-o"></span>My Profile</a></li>
+                          <li><a href="#"><span class="fa fa-star-o"></span>Meus Favorites</a></li>							 
+                          <li><a href="#"><span class="fa fa-key"></span>Settings</a></li>
+                          <li><a href="#"><span class="fa fa-history"></span>Help/Support</a></li>
+                          <li><a href="{% url 'logout' %}"><span class="fa fa-sign-in"></span>Log Out</a></li>
+                      </ul>
+                  </div><!-- close #header-user-profile-menu -->
+    </div><!-- close #header-user-profile -->
+              
+    <div id="header-user-notification">
+                  <div id="header-user-notification-click" class="noselect">
+                      <i class="far fa-bell"></i>
+                      <span class="user-notification-count">3</span>
+                  </div><!-- close #header-user-profile-click -->
+                  <div id="header-user-notification-menu">
+                      <h3>Notifications</h3>
+                      <div id="header-notification-menu-padding">
+                              <ul id="header-user-notification-list">
+                                  <li><a href="#!"><img src="{% static 'images/demo/user-profile-2.jpg' %}" alt="Profile">Lorem ipsum dolor sit amet, consec tetur adipiscing elit. <div class="header-user-notify-time">21 hours ago</div></a></li>
+                                  <li><a href="#!"><img src="{% static 'images/demo/user-profile-3.jpg' %}" alt="Profile">Donec vitae lacus id arcu molestie mollis. <div class="header-user-notify-time">3 days ago</div></a></li>
+                                  <li><a href="#!"><img src="{% static 'images/demo/user-profile-4.jpg' %}" alt="Profile">Aenean vitae lectus non purus facilisis imperdiet. <div class="header-user-notify-time">5 days ago</div></a></li>
+                              </ul>
+                              <div class="clearfix"></div>
+                          </div><!-- close #header-user-profile-menu -->
+                      </div>
+    </div><!-- close #header-user-notification -->				  
+        
+</header>

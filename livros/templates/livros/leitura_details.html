@@ -1,0 +1,407 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load format_duration %}
+
+{% block title %}Momentum | Management Dashboard gestão movie   {% endblock %}
+
+
+{% block dashboard %}
+
+
+<div class="section-body"> 
+    <div class="row">            
+        <div class="col-md-12">
+           <a style="position: relative; top: 60px; cursor: pointer; z-index: 9999999999;" href="{% url 'livros:leitura' %}"><div class=" float-left icon-top text-dark add-despesas " title="Voltar"><i style="font-size: 40px;" class="fas fa-reply-all"></i></div></a> 
+        </div>
+  
+    <div class="row">
+        <div class="col-md-12">
+         <div style="margin-top: 157px;" class="card card-leitura shadow rounded ">
+          <div class="row">
+              <div  class="col-2 float-left">
+                 <div style="position: relative; margin-top: -100px; width: 160px; right: 35px;" class="image"> <img src="{{ leitura.livro.Poster_url }}" class="rounded" width="155"> </div>
+              </div>
+              <div class="col-10">
+                  <div class="row">
+                      <div class="col-7 float-left">
+                         <h4 class="mb-0 mt-0"> {{ leitura.livro |truncatechars:40 }}</h4>
+                      </div>
+                      <div class="col-5 float-right mt-0">
+                        {% if leitura.is_open %}                        
+                        <a href="{% url 'livros:iniciar_leitura' leitura.id %}" onclick="start();" class="mr-2 badge badge-secondary btn-xs pull-right">Iniciar leitura</a>
+                        <a href="{% url 'livros:paginas_conluida' leitura.id%}" class="mr-2 badge badge-success btn-xs pull-right">Página conluída</a>
+                        
+                        {% elif leitura.is_running %}                        
+                        <a href="{% url 'livros:concluir_leitura' leitura.id  %}" class="mr-2 badge badge-success btn-xs pull-right">
+                            <span class="glyphicon glyphicon-ok"></span>Concluir
+                        </a>    
+                        <a href="{% url 'livros:pausar_leitura' leitura.id  %}"  class="">
+                            <span class="glyphicon glyphicon-pause mr-2 badge badge-danger btn-xs pull-right" onclick="stop()">Pausar</span>
+                        </a>
+                        <a href="{% url 'livros:paginas_conluida' leitura.id%}" class="mr-2  badge badge-primary btn-xs pull-right">Página conluída</a>    
+                        {% elif leitura.is_paused %}                       
+                        <a href="{% url 'livros:concluir_leitura' leitura.id %}" class="mr-2 badge badge-success btn-xs pull-right">
+                            <span class="glyphicon glyphicon-ok"></span>Concluir
+                        </a>
+                        <a href="{% url 'livros:iniciar_leitura' leitura.id  %}"  class="">
+                            <span  style="border: none;" class="glyphicon glyphicon-play  badge badge-info btn-xs pull-right mr-2 "  onclick="start()">Leitura</span>
+                        </a>
+                        <a href="{% url 'livros:paginas_conluida' leitura.id%}" class="mr-2 badge badge-primary btn-xs pull-right">Página conluída</a>
+    
+                        {% elif leitura.is_done %}  
+                        
+                        {% endif %}
+                        
+                      </div>
+                  </div> 
+                  <div class="row">
+                    <div class="col-md-8 float-left">
+                      <div style="width: 70%; height: 15px;" class="progress mt-3">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ leitura.complete_per }}%;" aria-valuenow="{{ leitura.complete_per}}" aria-valuemin="0" aria-valuemax="100">{{ leitura.complete_per}}%</div>
+                    </div>
+                    <br>
+                      <a href="#">Total de Paginas: <span class="text-dark">{{ leitura.paginas_restante }} / {{ leitura.paginas }}</span></a>
+                    </div>
+                    <div class="col-md-4 float-right mt-5">
+                      <div class="d-flex flex-column number float-right"> <span class="followers">Total de horas de leitura</span> <span  class="number2">{{ leitura.duracao_total | duration  }}</span> <span id="screen"></span></div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+       </div>
+        </div>        
+      </div>
+      
+      <h4 class="heading-extra-margin-bottom mt-5">Recomendações</h4>
+      <div class="row mt-5">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">The Wild Things Are</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.86"
+                                data-animation-start-value="0.86"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#42b740&quot;
+                                }"
+                                data-empty-fill="#def6de"
+                                data-reverse="true"
+                              ><span style="color:#42b740;">8.6</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+                
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Central Intelligence</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.6"
+                                data-animation-start-value="0.6"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#ff4141&quot;
+                                }"
+                                data-empty-fill="#ffe1e1"
+                                data-reverse="true"
+                              ><span style="color:#ff4141;">6.0</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+            
+                
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Zoolander No. 2</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.86"
+                                data-animation-start-value="0.86"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#42b740&quot;
+                                }"
+                                data-empty-fill="#def6de"
+                                data-reverse="true"
+                              ><span style="color:#42b740;">8.6</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+            
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Bad Neighbors 2</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.72"
+                                data-animation-start-value="0.72"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#42b740&quot;
+                                }"
+                                data-empty-fill="#def6de"
+                                data-reverse="true"
+                              ><span style="color:#42b740;">7.2</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+            
+                
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Star Wars: Rogue One</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.86"
+                                data-animation-start-value="0.86"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#42b740&quot;
+                                }"
+                                data-empty-fill="#def6de"
+                                data-reverse="true"
+                              ><span style="color:#42b740;">8.6</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+                
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">The Imitation Game</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.6"
+                                data-animation-start-value="0.6"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#ff4141&quot;
+                                }"
+                                data-empty-fill="#ffe1e1"
+                                data-reverse="true"
+                              ><span style="color:#ff4141;">6.0</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+                
+                
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Fantastic Beasts</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.86"
+                                data-animation-start-value="0.86"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#42b740&quot;
+                                }"
+                                data-empty-fill="#def6de"
+                                data-reverse="true"
+                              ><span style="color:#42b740;">8.6</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+                
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Edge of Tomorrow</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.72"
+                                data-animation-start-value="0.72"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#42b740&quot;
+                                }"
+                                data-empty-fill="#def6de"
+                                data-reverse="true"
+                              ><span style="color:#42b740;">7.2</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+                
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Allegiant</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.86"
+                                data-animation-start-value="0.86"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#42b740&quot;
+                                }"
+                                data-empty-fill="#def6de"
+                                data-reverse="true"
+                              ><span style="color:#42b740;">8.6</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+                
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Lo and Behold</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.6"
+                                data-animation-start-value="0.6"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#ff4141&quot;
+                                }"
+                                data-empty-fill="#ffe1e1"
+                                data-reverse="true"
+                              ><span style="color:#ff4141;">6.0</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+                
+                
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Drive</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.86"
+                                data-animation-start-value="0.86"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#42b740&quot;
+                                }"
+                                data-empty-fill="#def6de"
+                                data-reverse="true"
+                              ><span style="color:#42b740;">8.6</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->
+                
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="item-listing-container-skrn">
+                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
+                        <div class="item-listing-text-skrn">
+                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Nightcrawler</a></h6>
+                              <div
+                                class="circle-rating-pro"
+                                data-value="0.72"
+                                data-animation-start-value="0.72"
+                                data-size="32"
+                                data-thickness="3"
+                                data-fill="{
+                                  &quot;color&quot;: &quot;#42b740&quot;
+                                }"
+                                data-empty-fill="#def6de"
+                                data-reverse="true"
+                              ><span style="color:#42b740;">7.2</span></div>
+                            </div><!-- close .item-listing-text-skrn-vertical-align -->
+                        </div><!-- close .item-listing-text-skrn -->
+                    </div><!-- close .item-listing-container-skrn -->
+        </div><!-- close .col -->                
+    </div><!-- close .row -->	
+</div> 
+
+<!--
+<script>
+  window.onload = function() {
+   pantalla = document.getElementById("screen");
+}
+var isMarch = false; 
+var acumularTime = 0; 
+function start () {
+         if (isMarch == false) { 
+            timeInicial = new Date();
+            control = setInterval(cronometro,10);
+            isMarch = true;
+            }
+         }
+function cronometro () { 
+         timeActual = new Date();
+         acumularTime = timeActual - timeInicial;
+         acumularTime2 = new Date();
+         acumularTime2.setTime(acumularTime); 
+         cc = Math.round(acumularTime2.getMilliseconds()/10);
+         ss = acumularTime2.getSeconds();
+         mm = acumularTime2.getMinutes();
+         hh = acumularTime2.getHours()-18;
+         if (cc < 10) {cc = "0"+cc;}
+         if (ss < 10) {ss = "0"+ss;} 
+         if (mm < 10) {mm = "0"+mm;}
+         if (hh < 10) {hh = "0"+hh;}
+         pantalla.innerHTML = hh+" : "+mm+" : "+ss+" : "+cc;
+         }
+
+function stop () { 
+         if (isMarch == true) {
+            clearInterval(control);
+            isMarch = false;
+            }     
+         }      
+
+function resume () {
+         if (isMarch == false) {
+            timeActu2 = new Date();
+            timeActu2 = timeActu2.getTime();
+            acumularResume = timeActu2-acumularTime;
+            
+            timeInicial.setTime(acumularResume);
+            control = setInterval(cronometro,10);
+            isMarch = true;
+            }     
+         }
+
+function reset () {
+         if (isMarch == true) {
+            clearInterval(control);
+            isMarch = false;
+            }
+         acumularTime = 0;
+         pantalla.innerHTML = "00 : 00 : 00 : 00";
+         }
+</script>
+-->
+
+{% endblock %}

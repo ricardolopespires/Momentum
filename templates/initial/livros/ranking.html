@@ -1,0 +1,141 @@
+{% extends 'initial/livros.html' %}
+{% load static %}
+
+
+
+
+
+{% block livros %}
+
+
+<style>
+  .ranking
+  {
+    background: #e4bb23;
+    border-radius: 7px;
+    margin-bottom: 90px;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+  }
+
+
+
+.ranking .picture img
+{
+      width: 90px;
+      border-radius: 4px;
+      position: absolute;
+      left: 0; 
+      top: -10px;     
+}
+
+.description
+{
+    width: 100%;
+    height: 100%;    
+    text-align: center;
+}
+
+.description span
+{
+  position: relative;
+  top: 28px;
+	font-size: 19px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', helvetica;
+}
+
+.description span:nth-child(2)
+{
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  font-weight: 600;
+  font-family: 'Montserrat', helvetica, 
+}
+
+
+
+.rating
+{
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  
+}
+
+.number
+{
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+}
+
+.number p
+{
+  text-align: center;
+  font-size: 60px;
+  font-weight: 600;
+}
+</style>
+
+
+
+<section id="lancamentos" class="section-padding about-section">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="section-title">
+                <div class="section-subtitle"><i class="fas fa-trophy"></i>Ranking</div>
+                <h2 class="section-main-title">Os Top <strong>10</strong></h2>
+            </div>
+            <div class="about-item">
+                <p>
+                    Confira os melhores lançamentos, grandes clássicos da literatura mundial e brasileira até os contemporâneos que é a melhor enciclopédia de livros.
+                </p>						
+            </div>
+        </div>
+    </div>			
+</section>	
+<section>	
+  <div class="container">			
+    <div class="row mt-5">
+      {% if livros %}
+      {% for livro in livros %}
+      <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="ranking">
+        <div class="row">
+          <div class="col-2">          
+              <div class="picture">
+                <img src="{{ livro.Poster_url }}" alt="">
+              </div>            
+          </div>
+          <div class="col-8">
+            <div class="description">
+            <span> {{ livro.Title }}</span>            
+          </div> 
+          </div>
+          <div class="col-2">
+            <div class="rating">
+              <div class="number">
+                <p>{{ livro.Average_Rating }}</p>
+              </div>              
+            </div>
+          </div>
+        </div>
+        </div>            
+      </div><!-- close .col -->
+      {% endfor %} 
+      {% endif %}          
+    </div><!-- close .row -->	
+  </div>
+</section>
+
+
+       
+
+
+{% endblock %}

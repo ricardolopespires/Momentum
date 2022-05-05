@@ -1,0 +1,62 @@
+{% extends 'initial/base.html' %}
+{% load static %}		
+
+
+
+{% block index %}
+<style>
+.sinopse-genero a
+{
+	margin-right: 5px;
+}
+
+.about-item strong
+{
+	color: #e4bb23;
+}
+
+.banner-informativo
+{
+	width: 100%;
+	height: 280px;
+	background: #fff;
+	padding: 28px;
+	border-radius: 7px;
+	box-shadow: 0px 0px 12px rgba(0,0,0,0.4);
+	margin-bottom: 40px;
+}
+
+</style>
+
+<section class="banner-cartaz">
+	<div class="hero-conteudo">
+        <div class="container">
+			<div class="banner-text">
+				<h2 class="hero-titulo">O Menino Do Pijama Listrado</h2>
+
+				<p class="hero-genero">
+					<a href="#" class="hero-genero-item">Drama</a>
+					<a href="#" class="hero-genero-item"> Guerra</a>					
+				</p>	
+				<a href="#" class="hero-botao"
+					>Assitir Trailer <i class="fa fa-play-circle-o"></i
+				></a>	
+				<div class="hero-informacao">
+					<p>Lançamentos</p>
+					<p>07 de Novembro de 2008 ( Brasil )</p>
+				</div>
+			</div>           
+        </div>
+    </div>
+</section>
+
+<section class="catalogo bg-white">
+{% include 'include/filmes.html' %}
+
+	{% block movie %}
+
+	{% endblock %}
+	
+</section>	
+{% endblock %}
+

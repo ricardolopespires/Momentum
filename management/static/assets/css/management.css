@@ -1,0 +1,176 @@
+
+#management
+{
+    display: block;
+    width: 80.4%;
+    margin: 10px auto;
+    float: left;
+    z-index: -1;
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.slider-outer .management .management-title
+{
+  display: block;
+  position: relative;
+  font-size: 17px;
+  font-weight: 100;
+  z-index: 11;
+  margin-top: -10px;
+  font-weight: 700;
+  color: #cccccc;
+}
+
+.slider-outer .title-management-h2
+{
+  color:  #8898aa;
+  font-size: 34px;
+}
+
+.section-nav
+{
+    width: 100%;
+}
+
+
+.slider-outer .management i
+{
+    display: block;
+    position: absolute;
+    float: right;
+    right: 0;   
+    margin-right:40px!important;
+    top: 0; 
+    margin-top: 19px; 
+    font-size: 70px;
+    color: #669999;
+    z-index: 11;
+    
+}
+
+
+
+.item-listing-container-skrn {
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0px 3px 8px rgba(0,0,0, 0.06);
+  margin-bottom: 30px;
+}
+
+.item-listing-container-skrn img {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+
+.item-listing-text-skrn {
+  padding: 0px 24px 0px 24px;
+  height: 80px;
+  display: table;
+  width: 100%;
+}
+
+
+.item-listing-text-skrn-vertical-align {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.item-listing-text-skrn h6 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2rem;
+  margin-top: 4px;
+  float: left;
+  width: calc(100% - 50px);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 0.6rem;
+}
+
+.item-listing-text-skrn h6 a {
+  color: #333333;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.item-listing-text-skrn .circle-rating-pro {
+  margin-bottom: -5px;
+}
+
+.circle-rating-pro {
+  float: right;
+  position: relative;
+}
+
+
+
+.item-listing-container-skrn {
+	border-radius: 5px;
+	border:1px solid rgba(0,0,0,0.08);
+	box-shadow:0px 3px 8px rgba(0,0,0,  0.06);
+	margin-bottom:30px;
+}
+
+.item-listing-container-skrn img {
+	width:100%;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.item-listing-text-skrn {
+	padding:0px 24px 0px 24px;
+	height:80px;
+	display:table;
+	width:100%;
+}
+
+.item-listing-text-skrn-vertical-align {
+	display:table-cell;
+	vertical-align:middle;
+	width:100%;
+}
+
+.item-listing-text-skrn h6 {
+	font-size:14px;
+	font-weight:400;
+	line-height: 1.2rem;
+	margin-top:4px;
+	float:left;
+	width:calc(100% - 50px);
+}
+
+.item-listing-text-skrn h6 a {
+  color:#333333;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.item-listing-text-skrn .circle-rating-pro {
+	margin-bottom:-5px;
+}
+
+.circle-rating-pro {
+	float:right;
+	position:relative;
+}
+.circle-rating-pro span {
+	font-family: 'Montserrat', sans-serif;
+	font-weight:400;
+	position:absolute;
+	top:0;
+	left:0;
+	line-height:32px;
+	width:32px;
+	text-align:center;
+	font-size:11px;
+}
+
+
+

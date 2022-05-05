@@ -1,0 +1,53 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block title %}Momentum | Management Dashboard gestão movie   {% endblock %}
+
+
+{% block dashboard %}
+{{ block.super }}
+<div class="dashboard-body">
+	<div class="row">
+		<div class="col-12 col-md-12 col-lg-12">
+					   <div class="card card-livro shadow rounded">
+						 <div class="d-flex align-items-center">
+						 <div class="row">
+                            <div class="col-md-6">
+                                <section id="lancamentos" class="section-padding about-section">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="section-titles">
+                                                <div class="section-subtitle"><img src="https://img.icons8.com/dotty/80/000000/search-database.png"/>Verificar</div>
+                                                <h2 class="section-main-title">Verificar titulo do <strong>livro</strong> se já existe</h2>
+                                            </div>
+                                            <div class="adicionar-item-livro text-dark text-justify">
+                                                <p>
+                                                    Os melhores filmes baseados em grandes histórias da literatura, aqui você encontra a lista completa de filmes que em <strong>Breve</strong> serão lançados no cinemas.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </section>	
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <form action="." method="POST" class="mt-5 ml-5">
+                                    {% csrf_token %}
+                                    <img class="icon-add-livro" src="https://img.icons8.com/dotty/80/000000/e-learning-2.png"/>
+                                    <div class="md-form mt-5 ml-5">                                        
+                                        <input name="titulo" type="text" id="defaultForm-email" class="form-control">
+                                        <label for="defaultForm-email"></label>
+                                    </div>                                      
+                                    <div class="text-left">
+                                        <button class="btn btn-outline-secondary ml-5 waves-effect waves-light">verificar</button>
+                                    </div>
+                                </form>
+                            </div>
+                         </div>						   
+					   </div>
+					 </div>
+		</div>				
+	</div>
+</div>			
+
+{% endblock %}

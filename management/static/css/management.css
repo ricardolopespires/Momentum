@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;700&display=swap');
+
+
+.online
+{
+  box-shadow: 0px 0px  12px 4px rgba(0,255,0, 1)!important;
+  border-radius: 50%!important;
+  margin-right: 10px;
+}
+
+.off
+{
+  box-shadow: 0px 0px  12px 4px rgba(0,0,0,0.9)!important;
+  border-radius: 50%!important;
+  margin-right: 10px;
+}
+
+
+
+
+
+
+
+/*-----------------------  Table ------------------*/
+.content-table
+{
+  width: 100%;
+}
+
+
+.content-table h4 {
+  text-align: left;
+  color: #6777ef;
+  
+}
+.content-table .content-footer p {
+	color: #6d6d6d;
+    font-size: 12px;
+    text-align: center;
+}
+.content-table .content-footer p a {
+	color: inherit;
+	font-weight: bold;
+}
+
+
+
+
+/*---------------- carrosuel  Produtos ------*/
+.product-item-modifier-left
+{
+  width: 50%!important;
+  float: left;
+}
+.product-item-modifier-right
+{
+  width: 50%;
+  float: right;
+}
+
+
+/*---------------- End Carrosuel  Produtos ------*/
+
+
+/*---------------- Banner Statistic  ------*/
+
+.slider-outer .search .search-title 
+{
+  display: block;
+  position: relative;
+  font-size: 17px;
+  font-weight: 100;
+  z-index: 11;
+  margin-top: -10px;
+  font-weight: 700;
+  color: #cccccc;
+}
+
+.slider-outer .title-search-h2
+{
+  color:  #8898aa;
+  font-size: 34px;
+}
+
+.section-nav
+{
+    width: 100%;
+}
+
+
+.slider-outer .search i
+{
+    display: block;
+    position: absolute;
+    float: right
+    ;
+    top: 0; 
+    margin-top: 19px; 
+    font-size: 300px;
+    color: #F4BD76;
+    z-index: 11;
+    
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;700&display=swap');
+
+.sidebar-brand a img
+{
+  height: 70px;
+  
+}
+
+/*-----------------------  Table ------------------*/
+.content-table
+{
+  width: 100%;
+}
+
+
+.content-table h4 {
+  text-align: left;
+  color: #6777ef;
+  
+}
+.content-table .content-footer p {
+	color: #6d6d6d;
+    font-size: 12px;
+    text-align: center;
+}
+.content-table .content-footer p a {
+	color: inherit;
+	font-weight: bold;
+}
+
+
+
+
+/*---------------- carrosuel  Produtos ------*/
+.product-item-modifier-left
+{
+  width: 50%!important;
+  float: left;
+}
+.product-item-modifier-right
+{
+  width: 50%;
+  float: right;
+}
+
+
+/*---------------- End Carrosuel  Produtos ------*/
+
+
+/*---------------- Banner Statistic  ------*/
+
+.slider-outer .statistic .statistic-title 
+{
+  display: block;
+  position: relative;
+  font-size: 17px;
+  font-weight: 100;
+  z-index: 11;
+  margin-top: -10px;
+  font-weight: 700;
+  color: #cccccc;
+}
+
+.slider-outer .title-statistic-h2
+{
+  color:  #8898aa;
+  font-size: 34px;
+}
+
+.section-nav
+{
+    width: 100%;
+}
+
+
+.slider-outer .statistic i
+{
+    display: block;
+    position: absolute;
+    right: 0;
+    margin-right: 50px;
+    top: 0; 
+    float: right;
+    margin-top: 15px; 
+    font-size: 70px;
+    color: #F4BD76;
+    z-index: 11;
+    
+}
+
+.bg-background--modifier
+{
+  background: #e4bb23!important;
+}
+
+
+.fa-video-camera
+{
+  color: #fff!important;
+}
+
+/*---------------- End Banner Statistic  ------*/
+
+
+
+.slider-outer .statistic .statistic-title 
+{
+  display: block;
+  position: relative;
+  font-size: 17px;
+  font-weight: 100;
+  z-index: 11;
+  margin-top: -10px;
+  font-weight: 700;
+  color: #cccccc;
+}
+
+.slider-outer .title-statistic-h2
+{
+  color:  #8898aa;
+  font-size: 34px;
+}
+
+.section-nav
+{
+    width: 100%;
+}
+
+
+.slider-outer .statistic i
+{
+    display: block;
+    position: absolute;
+    float: right
+    ;
+    top: 0; 
+    margin-top: 19px; 
+    font-size: 70px;
+    color:  #e4bb23;
+    z-index: 11;
+    
+}
+
+
+
+
+.filme-poster {
+	margin: 0;
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	position: relative;
+}
+
+.filme-poster img {
+	width: 100%;
+	height: auto;
+}
+
+.filme-poster-info {
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	left: 0;
+	opacity: 0;
+	padding: 80px 20px;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	transition: all 0.2s ease-in-out;
+	visibility: hidden;
+	width: 100%;
+	z-index: 1;
+}
+
+.catalogo-filmes-lista-item:hover .filme-poster-info {
+	opacity: 1;
+	visibility: visible;
+}
+
+.filme-poster-info h3 {
+	color: #e4bb23;
+	font-size: 2em;
+	line-height: 1em;
+	text-transform: uppercase;
+}
+
+.filme-poster-link {
+	color: #fff;
+	font-size: 5em;
+	transition: all 0.2s ease-in-out;
+}
+
+.filme-poster-link:hover {
+	color: #e4bb23;
+}
+
+.filme-sinopse {
+	padding: 10px;
+	width: 100%;
+}
+
+.filme-sinopse-titulo {
+	font-size: 1.3em;
+	font-weight: bold;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.sinopse-genero {
+	margin: 10px 0;
+	display: flex;
+}
+
+.sinopse-genero span
+{
+	font-size:14px ;
+	margin-right: 10px;
+}
+
+.sinopse-genero-item {
+	text-decoration: none;
+	font-size: 1.2em;
+	color: #e4bb23;
+}
+
+.sinopse-genero-item:hover {
+	text-decoration: underline;
+}
+
+.filme-nota {
+	margin: 0;
+	align-items: center;
+	display: flex;
+	font-size: 2em;
+	font-weight: bold;
+	justify-content: space-between;
+}
+
+.filme-nota i {
+	color: #ccc;
+	cursor: pointer;
+}
+
+.filme-nota i:hover {
+	color: #e74c3c;
+}
+
+.rodape {
+	background-color: #fff;
+	color: #bababa;
+	padding: 20px 0;
+	text-align: center;
+	width: 100%;
+}
+
+.rodape .container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.rodape-lista {
+	padding: 0;
+	list-style: none;
+	display: flex;
+}
+
+.rodape-lista-item {
+	margin: 0 20px;
+}
+
+.rodape-lista-item:last-child {
+	margin-right: 0;
+}
+
+.rodape-lista-item a {
+	font-size: 2.5em;
+	color: #bababa;
+	text-decoration: none;
+	transition: all 0.2s ease-in-out;
+}
+
+.icone-twitter a:hover {
+	color: #55acee;
+}
+
+.icone-facebook a:hover {
+	color: #3b5998;
+}
+
+.icone-instagram a:hover {
+	color: #e95950;
+}
+
+/*---------------- End Banner Statistic  ------*/

@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;700&display=swap');
+
+.sidebar-brand a img
+{
+  height: 40px;
+  
+}
+
+.online
+{
+  box-shadow: 0px 0px  12px 4px rgba(0,255,0, 1)!important;
+  border-radius: 50%!important;
+  margin-right: 10px;
+}
+
+.off
+{
+  box-shadow: 0px 0px  12px 4px rgba(0,0,0,0.9)!important;
+  border-radius: 50%!important;
+  margin-right: 10px;
+}
+
+
+
+
+
+
+
+/*-----------------------  Table ------------------*/
+.content-table
+{
+  width: 100%;
+}
+
+
+.content-table h4 {
+  text-align: left;
+  color: #6777ef;
+  
+}
+.content-table .content-footer p {
+	color: #6d6d6d;
+    font-size: 12px;
+    text-align: center;
+}
+.content-table .content-footer p a {
+	color: inherit;
+	font-weight: bold;
+}
+
+
+
+
+/*---------------- carrosuel  Produtos ------*/
+.product-item-modifier-left
+{
+  width: 50%!important;
+  float: left;
+}
+.product-item-modifier-right
+{
+  width: 50%;
+  float: right;
+}
+
+
+/*---------------- End Carrosuel  Produtos ------*/
+
+
+/*---------------- Banner Statistic  ------*/
+
+.slider-outer .statistic .statistic-title 
+{
+  display: block;
+  position: relative;
+  font-size: 17px;
+  font-weight: 100;
+  z-index: 11;
+  margin-top: -10px;
+  font-weight: 700;
+  color: #cccccc;
+}
+
+.slider-outer .title-statistic-h2
+{
+  color:  #8898aa;
+  font-size: 34px;
+}
+
+.section-nav
+{
+    width: 100%;
+}
+
+
+.slider-outer .statistic i
+{
+    display: block;
+    position: absolute;
+    right: 0;
+    margin-right: 50px;
+    top: 0; 
+    float: right;
+    margin-top: 15px; 
+    font-size: 70px;
+    color: #F4BD76;
+    z-index: 11;
+    
+}
+
+.bg-background--modifier
+{
+  background: #F4BD76!important;
+}
+
+
+/*---------------- End Banner Statistic  ------*/

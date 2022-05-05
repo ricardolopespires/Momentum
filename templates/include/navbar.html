@@ -1,0 +1,19 @@
+{% load static %}
+
+
+
+<header class="header ">
+   <a href="#" class="nav__logo">Momentum<span class="ponto">.</span></a>
+    <ul class="hero-lista">
+        <li class="hero-lista-item"><a href="{% url 'index' %}">Home</a></li>
+        <li class="hero-lista-item"><a href="{% url 'livros' %}">Livros</a></li>        
+        <li class="hero-lista-item"><a href="{% url 'movie' %}">Em Filmes</a></li>
+    </ul>
+    <ul class="hero-lista accounts">
+        <li class="hero-lista-item"><a href="{% url 'login' %}">Login</a></li>
+        <span>/</span>
+        <li class="hero-lista-item"><a href="{% url 'register' %}">Register</a></li>       
+    </ul>
+</header>
+
+

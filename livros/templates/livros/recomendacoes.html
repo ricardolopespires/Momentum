@@ -1,0 +1,102 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+
+{% block dashboard %}
+
+
+
+{% if leituras %}
+{% for leitura in leituras %}
+<div class="col-12 col-md-6 col-lg-4 col-xl-3">
+    <div class="item-listing-container-skrn">
+    <a href="{% url 'movie:details' movie.id %}"><img src="{{ movie.Poster_url  }}" alt="Listing"></a>
+    <div class="item-listing-text-skrn">
+        <div class="item-listing-text-skrn-vertical-align"><h6><a href="{% url 'movie:details' movie.id %}">{{ movie.Title }}</a></h6>
+        <div
+        class="circle-rating-pro"
+        data-value="{{ movie.Average_Count }}"
+        data-animation-start-value="{{ movie.average_count }}"
+        data-size="32"
+        data-thickness="3"
+        {% if movie.average_count == '0.6' %}
+        data-fill="{
+        &quot;color&quot;: &quot;#e6e600&quot;
+        }"
+        {% elif movie.average_count == '0.5' %}
+        data-fill="{
+        &quot;color&quot;: &quot;#e6e600&quot;
+        }"
+        {% elif movie.average_count == '0.4' %}
+        data-fill="{
+        &quot;color&quot;: &quot;#e6e600&quot;
+        }"
+        {% elif movie.average_count == '0.3' %}
+        data-fill="{
+        &quot;color&quot;: &quot;#ff4141&quot;
+        }"
+        {% elif movie.average_count == '0.2' %}
+        data-fill="{
+        &quot;color&quot;: &quot;#ff4141&quot;
+        }"
+        {% elif movie.average_count == '0.1' %}
+        data-fill="{
+        &quot;color&quot;: &quot;#ff4141&quot;
+        }"
+        {% elif movie.average_count == '0.0' %}
+        data-fill="{
+        &quot;color&quot;: &quot;#ff4141&quot;
+        }"
+        {% else %}
+        data-fill="{
+            &quot;color&quot;: &quot;#42b740&quot;
+            }"
+        {% endif %}
+        data-empty-fill="#ffe1e1"
+        data-reverse="true"
+        >{% if movie.average_count == '0.6' %}
+        <span style="color:#e6e600;">{{ movie.average_rating }}</span>
+        {% elif movie.average_count == '0.5' %}
+        <span style="color:#e6e600;">{{ movie.average_rating }}</span>
+        {% elif movie.average_count == '0.4' %}
+        <span style="color:#e6e600;">{{ movie.average_rating }}</span>
+        {% elif movie.average_count == '0.3' %}
+        <span style="color:#ff4141;">{{ movie.average_rating }}</span>
+        {% elif movie.average_count == '0.2' %}
+        <span style="color:#ff4141;">{{ movie.average_rating }}</span>
+        {% elif movie.average_count == '0.1' %}
+        <span style="color:#ff4141;">{{ movie.average_rating }}</span>
+        {% elif movie.average_count == '0.0' %}
+        <span style="color:#ff4141;">{{ movie.average_rating }}</span>
+        {% else %}
+        <span style="color:#42b740;">{{ movie.Average_Rating }}</span>
+        {% endif %}
+        </div><!-- close .item-listing-text-skrn-vertical-align -->
+        </div><!-- close .item-listing-text-skrn-vertical-align -->
+    </div><!-- close .item-listing-text-skrn -->
+    </div><!-- close .item-listing-container-skrn -->
+</div><!-- close .col -->    
+{% endfor %}
+{% else %}
+
+    <div  class="col-12 col-md-12 col-lg-12 col-xl-12 mb-5">
+       <div  class="card mb-5 ">
+           <div class="playlist p-5">
+            <div class="section-titles">
+              <div class="section-subtitle"><img class="mr-2" style="width: 50px;" src="/static/img/recommendations.png" alt="Recomendações">Recomendações</div>
+              <h2 class="section-main-title"><strong>Recomendações</strong> dos melhores livros para uma boa Leitura</h2>
+            </div>
+            <div class="about-item">
+              <p class="text-dark">
+                Os melhores filmes baseados em grandes histórias da literatura, aqui você encontra a lista completa de filmes que <strong class="strong">Foram</strong> lançamentos e estreias nos Cinemas.
+              </p>
+            </div>
+           </div>           
+       </div>
+    </div>
+</div>
+<br>
+<br>
+{% endif %}
+{% endblock  %}

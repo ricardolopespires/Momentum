@@ -1,0 +1,180 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="pt-br">
+	
+<!-- Mirrored from progression-studios.com/skrn/dashboard-home.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 02 Oct 2020 21:19:31 GMT -->
+<head>
+	
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+	<link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'livros.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700%7CMontserrat:300,400,600,700">		
+	<link rel="stylesheet" href="{% static 'icons/fontawesome/css/fontawesome-all.min.css' %}"><!-- FontAwesome Icons -->
+	<link rel="stylesheet" href="{% static 'icons/Iconsmind__Ultimate_Pack/Line%20icons/styles.min.css' %}"><!-- iconsmind.com Icons -->
+	<link rel="stylesheet" type="text/css" href="{% static 'icons/icon-font.min.css' %}">
+
+
+
+	<script src="https://kit.fontawesome.com/55bcbae4d6.js" crossorigin="anonymous"></script>
+		
+	<title>{% block title %}                        {% endblock %}</title>
+</head>
+
+<style>
+    @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css);
+
+.hm-gradient {
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+}
+.darken-grey-text {
+    color: #2E2E2E;
+}
+.danger-text {
+    color: #ff3547; }
+.default-text {
+    color: #2BBBAD; 
+}
+.info-text {
+    color: #33b5e5; 
+}
+.form-white .md-form label {
+  color: #fff; 
+}
+.form-white input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #fff;
+    -webkit-box-shadow: 0 1px 0 0 #fff;
+    box-shadow: 0 1px 0 0 #fff; 
+}
+.form-white input[type=text]:focus:not([readonly]) + label {
+    color: #fff; 
+}
+.form-white input[type=password]:focus:not([readonly]) {
+    border-bottom: 1px solid #fff;
+    -webkit-box-shadow: 0 1px 0 0 #fff;
+    box-shadow: 0 1px 0 0 #fff; 
+}
+.form-white input[type=password]:focus:not([readonly]) + label {
+    color: #fff; 
+}
+.form-white input[type=password], .form-white input[type=text] {
+    border-bottom: 1px solid #fff; 
+}
+.form-white .form-control:focus {
+    color: #fff;
+}
+.form-white .form-control {
+    color: #fff;
+}
+.form-white textarea.md-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #fff;
+    box-shadow: 0 1px 0 0 #fff;
+    color: #fff; 
+}
+.form-white textarea.md-textarea  {
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+.form-white textarea.md-textarea:focus:not([readonly])+label {
+    color: #fff;
+}
+.ripe-malinka-gradient {
+    background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+}
+.near-moon-gradient {
+    background-image: linear-gradient(to bottom, #5ee7df 0%, #b490ca 100%);
+}
+
+.icon-add-livro
+{
+    position: absolute;
+    left: 5px;
+}
+</style>
+
+<body>
+	{% include 'include/navbar-dashboard.html' %}	
+<main id="col-main">
+	<div class="banner-dashboard">
+		<div class="container-fluid   ">
+			<div class="dashboard-body">
+				<div class="row">
+					<div class="col-md-12 mb-5">
+					   <div class="card cad-user-dashboard p-3 mt-5 ml-5 mr-5">
+						 <div class="d-flex align-items-center">
+						 <div class="row">
+                            <div class="col-md-6">
+                                <section id="lancamentos" class="section-padding about-section">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="section-titles">
+                                                <div class="section-subtitle"><img src="https://img.icons8.com/dotty/80/000000/search-database.png"/>Verificar</div>
+                                                <h2 class="section-main-title">Verificar se esse <strong>Autor</strong> se já existe</h2>
+                                            </div>
+                                            <div class="adicionar-item-livro text-dark text-justify">
+                                                <p>
+                                                    Os melhores filmes baseados em grandes histórias da literatura, aqui você encontra a lista completa de filmes que em <strong>Breve</strong> serão lançados no cinemas.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </section>	
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <form action="." method="POST" class="mt-5 ml-5">
+                                    {% csrf_token %}
+                                    <img class="icon-add-livro" src="https://img.icons8.com/dotty/80/000000/e-learning-2.png"/>
+                                    <div class="md-form mt-5 ml-5">                                        
+                                        <input name="titulo" type="text" id="defaultForm-email" class="form-control">
+                                        <label for="defaultForm-email"></label>
+                                    </div>                                      
+                                    <div class="text-left">
+                                        <button class="btn btn-default waves-effect waves-light">verificar</button>
+                                    </div>
+                                </form>
+                            </div>
+                         </div>						   
+					   </div>
+					 </div>
+					</div>				
+					</div>
+			</div>			
+		</div>
+	</div>
+</main>        		
+	</div><!-- close #sidebar-bg-->
+		
+		<!-- Required Framework JavaScript -->
+		<script src="{% static 'js/libs/jquery-3.3.1.min.js' %}"></script><!-- jQuery -->
+		<script src="{% static 'js/libs/popper.min.js' %}" defer></script><!-- Bootstrap Popper/Extras JS -->
+		<script src="{% static 'js/libs/bootstrap.min.js' %}" defer></script><!-- Bootstrap Main JS -->
+		<!-- All JavaScript in Footer -->
+		
+		<!-- Additional Plugins and JavaScript -->
+		<script src="{% static 'js/navigation.js' %}" defer></script><!-- Header Navigation JS Plugin -->
+		<script src="{% static 'js/jquery.flexslider-min.js' %}" defer></script><!-- FlexSlider JS Plugin -->
+		<script src="{% static 'js/jquery-asRange.min.js' %}" defer></script><!-- Range Slider JS Plugin -->
+		<script src="{% static 'js/circle-progress.min.js' %}" defer></script><!-- Circle Progress JS Plugin -->
+		<script src="{% static 'js/afterglow.min.js' %}" defer></script><!-- Video Player JS Plugin -->
+		<script src="{% static 'js/script.js' %}" defer></script><!-- Custom Document Ready JS -->
+		<script src="{% static 'js/script-dashboard.js' %}" defer></script><!-- Custom Document Ready for Dashboard Only JS -->
+		
+
+
+
+		<script src="{% static 'js/main.js' %}"></script><!-- jQuery -->
+</body>
+
+<!-- Mirrored from progression-studios.com/skrn/dashboard-home.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 02 Oct 2020 21:20:42 GMT -->
+</html>
+
+
+
+

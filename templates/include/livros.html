@@ -1,0 +1,14 @@
+{% load static %}
+<nav class="catalogo-menu">
+    <div class="container">
+        <ul class="catalogo-menu-lista">
+            <li class="catalogo-menu-lista-item">
+                <a href="{% url 'livros' %}">Lançamentos</a>
+            </li>
+            <li class="catalogo-menu-lista-item"><a href="{% url 'mais_lido' %}">Mais lidos</a></li>
+            <li class="catalogo-menu-lista-item"><a href="{% url 'autores' %}">Autores</a></li>
+            <li class="catalogo-menu-lista-item"><a href="{% url 'ranking' %}">Ranking</a></li>
+            
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,81 @@
+<!doctype html>
+{% load static %}
+<html lang="pt-br">
+ 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+    <title>{% block title %}Momentum | Login Insira suas informações de usuário. {% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link href=" {% static 'assets/vendor/fonts/circular-std/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/libs/css/style.css' %}">  
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">  
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
+    <style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    
+    </style>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- login page  -->
+    <!-- ============================================================== -->
+    <div class="splash-container">
+        <div class="card " style="left: 10px;"> 
+            <div class="card-header text-center"><a href="{% url 'index' %}" class="nav__logo">Momentum<span class="ponto">.</span></a><span class="splash-description">Insira suas informações de usuário.</span></div>
+            <div class="card-body">
+                <form method = 'POST'>
+                {% csrf_token %}
+                
+                    <div class="form-group">                        
+                        <input type="text" name="username" class="form-control form-control-lg" id="username" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User Name';}"autocomplete="on"/>
+                    </div>
+                    
+                    <div class="form-group">                       
+                        <input id='pw' name='password' type="password" class="form-control form-control-lg"  value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Lembrar me</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-login btn-lg btn-block">Entrar</button>
+                </form>
+                <div class="container"> 
+            </div>
+            <div class="card-footer bg-white p-0  ">
+                <div style="padding: 10px 16px;"   class="card-footer-item card-footer-item-bordered">
+                    <a  href="{% url 'register' %}" class="footer-link font-size">Crie a sua conta aqui</a></div>
+                <div style="padding: 10px 16px;" class="card-footer-item card-footer-item-bordered">
+                    <a href="#" class="footer-link font-size">Esqueceu a senha</a>
+                </div> 
+            </div>
+        </div>
+    </div>
+  
+    <!-- ============================================================== -->
+    <!-- end login page  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="{% static 'js/accounts.js' %}"></script>
+</body>
+ 
+</html>
