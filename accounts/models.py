@@ -1,5 +1,7 @@
 from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin, UserManager)
-#from livros.models import Ebook, Playlist, Favoritos, Review, Leitura
+from django.core.validators import MaxValueValidator, MinValueValidator
+from livros.models import Ebook, Quiz, Question
+from ckeditor.fields import RichTextField
 #from dashboard.views import reviews
 from phone_field import PhoneField
 from django.core import validators
@@ -11,6 +13,7 @@ from livros.models import Ebook
 from django.db import models
 import re
 # Create your models here.
+
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -45,7 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField('É da equipe?', blank=True, default=False)
     date_joined = models.DateTimeField('Data de Entrada', auto_now_add=True)
     img = models.ImageField(upload_to = 'user', blank = True)
-    livros = models.ManyToManyField(Ebook, related_name= 'user_livros')
+    livros = models.ManyToManyField(Ebook, related_name= 'user_livros', blank = True)
     #leitura = models.ManyToManyField(Leitura, related_name = 'leitura_user_livros', blank = True)
     #favoritos = models.ManyToManyField(Favoritos, related_name = 'favoritos_user_livros', blank = True)
     #playlist =  models.ManyToManyField(Playlist, related_name = 'playlist_user_livros', blank = True)
@@ -53,9 +56,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     #movie = models.ManyToManyField(Movie, related_name = 'user_movie', blank=True )
     total_horas = models.CharField(max_length = 50, default = "00:00:00")
     total_lidos = models.IntegerField('O tota de livros já lidos',  default=0)
-    Average_Rating = models.CharField(max_length=10, default = 0)
-    Average_Count = models.CharField(max_length=100, blank=True)
+    Average_Rating = models.CharField(max_length=4, default = 0)
+    Average_Count = models.CharField(max_length=4, default = 0, blank=True)
     Publicacoes = models.IntegerField(default=0)
+    experiencia = models.IntegerField(default = 0 , help_text = "O Total de experiência do conhecimento ")
  
 
     objects = UserManager()
@@ -105,3 +109,77 @@ class Newsletter(models.Model):
 
     def __str__(self):
         return self.email
+
+
+
+
+
+class Answered(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, 
+        related_name='usuário_answered', on_delete = models.CASCADE, blank = True, null = True )
+    livro = models.ForeignKey(Ebook, related_name = 'livro_answered', on_delete = models.CASCADE)
+    quiz = models.ForeignKey(Quiz, related_name = 'quiz_answered', on_delete = models.CASCADE)
+    question = models.ForeignKey(Question, related_name = 'question_answered', on_delete = models.CASCADE)
+    topic = models.CharField(max_length = 120)
+    difficulty = models.CharField(max_length = 9)
+    created = models.DateTimeField(auto_now_add = True)
+
+
+    class Meta:
+        verbose_name = 'Questão Resolvida'
+        verbose_name_plural = 'Questões Resolvidas'
+        
+
+    def __str__(self):
+        return f'{self.livro}, {self.quiz}, {self.question}'
+
+
+
+
+class Experiencia(models.Model):
+    nivel = models.IntegerField(default = 0)
+    user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name = 'experiências', blank=True)    
+    porcentagem = models.IntegerField(help_text = 'Porcetagem da Experiência', default = 0)
+    pontuacao = models.IntegerField(help_text = 'Pontuação da Experiência', default = 0)
+    total = models.IntegerField(help_text = 'total da Experiência do nivel', default = 0)
+    is_active = models.BooleanField( default = False)
+
+
+
+    def save(self, *args, **kwargs):
+
+        porcentagem = 100
+        try:
+            calculo = porcentagem / self.total
+        except ZeroDivisionError:
+            calculo = porcentagem / 1
+        resultado = self.pontuacao * calculo
+        self.porcentagem =  float("{0:.2f}".format(resultado))       
+
+        super().save(*args, **kwargs)
+
+
+    class Meta:
+        verbose_name = 'Experiência'
+        verbose_name_plural = 'Experiências'
+
+
+    def __str__(self):
+        return f'{self.nivel}, {self.porcentagem}'  
+
+
+
+class habilidades(models.Model):    
+    titulo = models.CharField(max_length = 450,)
+    user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name = 'habilidades', blank=True)
+    descricao = RichTextField(blank = True, null = True)
+    porcetagem = models.IntegerField(help_text = 'Porcetagem da habilidades', default = 0)
+
+
+    class Meta:
+        verbose_name = 'Habilidade'
+        verbose_name_plural = 'Habilidades'
+        
+
+    def __str__(self):
+        return f'{self.titulo}, {self.porcetagem}'   

@@ -53,6 +53,13 @@
 /* 2. Mixin */
 /* 3. Bootstrap Override */
 /* 3.1 Misc */
+
+/*DIGITAL CLOCK FONT*/
+@font-face{
+ font-family:'digital-7';
+ src: url('../fonts/digital-7.ttf');
+}
+
 @import url("//fonts.googleapis.com/css?family=Nunito:400,600,700,800");
 .btn:focus,
 .btn:active,
@@ -1957,7 +1964,7 @@ body, html {
   min-height: 100%; }
 
 body {
-  background-color: #f4f6f9;
+  background-color: #f4f6f9!important;
   font-size: 14px;
   font-weight: 400;
   font-family: "Nunito", "Segoe UI", arial;
@@ -2974,4 +2981,61 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 {
   top: 280px!important;
 
+}
+
+
+
+
+
+
+#messages
+{
+    height: 110px!important; 
+    width: 109%!important;
+}
+
+#messages h1
+{
+    margin-top: -28px!important;
+}
+
+.info
+{
+  
+  color: var(--info)!important;
+}
+
+.border-info
+{
+  border-left: 9px solid  var(--info)!important;
+}
+
+
+
+.error
+{
+  
+  color: var(--red)!important;
+}
+
+.border-error
+{
+  border-left: 9px solid  var(--red)!important;
+}
+
+.success
+{
+  
+  color: var(--green)!important;
+}
+
+.border-success
+{
+  border-left: 9px solid  var(--green)!important;
+}
+
+
+.clock
+{
+    font-family: 'digital-7', sans-serif;
 }

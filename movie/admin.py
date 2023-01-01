@@ -1,3 +1,4 @@
+'''
 from django.contrib import admin
 from movie.models import Movie, Trailler, Review, Like
 from import_export.admin import ImportExportModelAdmin
@@ -29,3 +30,4 @@ class ReviewAdmin(ImportExportModelAdmin):
 
 admin.site.register(Like)
 
+'''

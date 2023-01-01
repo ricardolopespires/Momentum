@@ -1,0 +1,135 @@
+{% extends 'management/base.html' %}
+{% load static %}
+
+
+
+{% block title %}Momentum | Management Dashboard gestão movie   {% endblock %}
+
+
+{% block dashboard %}
+{{ block.super }}
+
+<div style="height: 110px!important;" class="section-header">
+    <h5 style="margin-top: -28px; color:#cccccc;" class="position-absolute ml-2 mb-4">Livro</h5>
+    <br>
+    <h1 style="color: #8898aa; font-size: 40px;" class="mt-4 ml-2">Criar Questionários</h1>
+    <div class="section-header-breadcrumb">       
+        <i style="font-size: 70px; color: #000066;" class="fas fa-list-ol"></i>
+    </div>
+</div>
+<div class="section-body ">
+	<h2 class="section-title">Criação de Questionários</h2>
+    <p class="section-lead">
+        Criação de um novo questionário de livro <strong class="text-success"> {{ livro.Title }} </strong>  para desevolvimento do conhecimento .
+    </p>
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+            <div class="card">
+                  <div class="card-header">
+                    <h4>Formulário </h4>
+                  </div>
+                <form action="." method="post">
+                  {% csrf_token %}
+                  <div class="card-body">
+                    <div class="alert alert-danger">
+                      <b>Nota!</b> Os dados deve ser corretos.
+                    </div>
+                    
+                    <div class="row">
+                    	<div class="col-6">
+                    		<div class="form-group">              
+		                        <label for="id_name">Nome:</label>
+        							    <input type="text" class="form-control" name="name" maxlength="120" required id="id_name">
+          							</div>
+                      </div>                                       
+                    	<div class="col-6">
+                    		<div class="form-group">              
+		                        <label for="id_livro">Livro:</label>
+            								<select name="livro" class="form-control" required id="id_livro">
+            									<option value="" selected>---------</option>
+            									{% for livro in livros %}
+            									<option value="{{ livro.id }}">{{ livro.Title }}</option>			  
+            									 {% endfor %}
+            								</select>
+            							</div> 
+                    	</div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="id_topic">Topico:</label>
+                          <input type="text" class="form-control" name="topic" maxlength="120" required id="id_topic">                    
+                        </div>                        
+                      </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="id_number_of_questions">Numero de questionarios:</label>
+                          <input type="number" class="form-control" name="number_of_questions" required id="id_number_of_questions">
+                        </div>                        
+                      </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="id_time">Tempo:</label>
+                          <input class="form-control" type="number" name="time" required id="id_time">
+                          <span class="helptext">Duração do questionário em minutos</span>
+                        </div>                        
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <label for="id_required_score_to_pass">Pontuação necessária para passar:</label>
+                          <input type="number" class="form-control" name="required_score_to_pass" required id="id_required_score_to_pass">
+                          <span class="helptext">pontuação necessária em %</span>
+                        </div>                        
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <label for="id_difficulty">Difficulty:</label>
+                            <select class="form-control" name="difficulty" required id="id_difficulty">
+                              <option value="" selected>---------</option>
+                              <option value="fácil">fácil</option>
+                              <option value="medium">medium</option>
+                              <option value="dificil">dificil</option>
+                            </select>
+                        </div>                        
+                      </div>
+                       <div class="col-3">
+                        <div class="form-group">
+                          <label for="id_difficulty">Status:</label>
+                            <select class="form-control" name="status" required id="id_difficulty">
+                              <option value="" selected>---------</option>
+                              <option value="projeto">projeto</option>
+                              <option value="elaboração">elaboração</option>
+                              <option value="concluido">concluido</option>
+                            </select>
+                        </div>                        
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <label for="id_media">Media:</label>
+                          <input type="number" class="form-control" name="media" value="0" required id="id_media">
+                        </div>                        
+                      </div>                      
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Status do questionário</label>
+                      <div class="selectgroup selectgroup-pills">
+                        <label class="selectgroup-item">
+                          <input type="checkbox" name="completed" value="True" class="selectgroup-input" >
+                          <span class="selectgroup-button">Concluido</span>
+                        </label>                      
+                      </div>
+                    </div>			                                    
+                  </div>
+                  <div class="card-footer text-right">
+                    <button class="btn btn-outline-success mr-1" type="submit">Criar</button>
+                    <button class="btn btn-danger" type="reset">Cancelar</button>
+                  </div>
+                </form>
+            </div>            
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+    
+

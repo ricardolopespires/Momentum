@@ -1,3 +1,4 @@
+'''
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.template import loader
@@ -27,3 +28,4 @@ def actors(request, actor_slug):
 	template = loader.get_template('actor.html')
 
 	return HttpResponse(template.render(context, request))
+'''

@@ -1,10 +1,11 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load format_duration %}
 
+{% block title %}Momentum | Management Dashboard gestão movie   {% endblock %}
 
 
 {% block dashboard %}
-
 <style>
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 .courses-container 
@@ -124,17 +125,25 @@
 	}
 }
 </style>
+<div style="height: 110px!important;" class="section-header">
+    <h5 style="margin-top: -28px; color:#cccccc;" class="position-absolute ml-2 mb-4">Dashboard</h5>
+    <br>
+    <h1 style="color: #8898aa; font-size: 40px;" class="mt-4 ml-2">Livros</h1>
+    <div class="section-header-breadcrumb">       
+        <i style="font-size: 70px; color: #000066;" class="fas fa-book"></i>
+    </div>
+</div>
 
 <h4 class="heading-extra-margin-bottom mt-5">Leituras</h4>
 		<div class="row">
-		{% if leituras %}
+	{% if leituras %}
 		{% for leitura in leituras %}
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="courses-container">
 				<div class="course">
 					<a href="{% url 'livros:leitura_details' leitura.id %}">
 						<div class="course-preview" data-background="">
-							<img style="position: absolute; top: 0; left: 0;" src="{{ leitura.livro.Poster_url }}" alt="">
+							<img  style="position: absolute; top: 0; left: 0; width: 100%" src="{{ leitura.livro.capa }}" alt="">
 						</div>
 					</a>
 					<div class="course-info">
@@ -147,8 +156,8 @@
 							</span>
 						</div>
 						<h6>Livro</h6>
-						<a href="{% url 'livros:leitura_details' leitura.id %}"><h2>{{ leitura.livro |truncatechars:26 }}</h2></a>
-						<a href="#">Autor: {% for autor in leitura.livro.Autor.all %} <span class="text-dark">{{ autor}},{% endfor%}</span></a>
+						<a href="{% url 'livros:leitura_details' leitura.id %}"><h2>{{ leitura.livro |truncatechars:37 }}</h2></a>
+						<a href="#">Autor: {% for autor in leitura.livro.autor.all %} <span class="text-dark">{{ autor}},{% endfor%}</span></a>
 						<br>
 						<a href="#">Data do Inicio: <span class="text-dark">{{ leitura.inicio  |date}}</span></a>
 						<br>
@@ -378,39 +387,39 @@
 						data-fill="{
 						&quot;color&quot;: &quot;#ff4141&quot;
 						}"
-						{% elif movie.Average_Count == '0.09' %}
+						{% elif movie.Average_Count == '0.9' %}
 						data-fill="{
 						&quot;color&quot;: &quot;#ff4141&quot;
 						}"
-						{% elif movie.Average_Count == '0.08' %}
+						{% elif movie.Average_Count == '0.8' %}
 						data-fill="{
 						&quot;color&quot;: &quot;#ff4141&quot;
 						}"
-						{% elif movie.Average_Count == '0.07' %}
+						{% elif movie.Average_Count == '0.7' %}
 						data-fill="{
 						&quot;color&quot;: &quot;#ff4141&quot;
 						}"
-						{% elif movie.Average_Count == '0.06' %}
+						{% elif movie.Average_Count == '0.6' %}
 						data-fill="{
 						&quot;color&quot;: &quot;#ff4141&quot;
 						}"
-						{% elif movie.Average_Count == '0.05' %}
+						{% elif movie.Average_Count == '0.5' %}
 						data-fill="{
 						&quot;color&quot;: &quot;#ff4141&quot;
 						}"
-						{% elif movie.Average_Count == '0.04' %}
+						{% elif movie.Average_Count == '0.4' %}
 						data-fill="{
 						&quot;color&quot;: &quot;#ff4141&quot;
 						}"
-						{% elif movie.Average_Count == '0.03' %}
+						{% elif movie.Average_Count == '0.3' %}
 						data-fill="{
 						&quot;color&quot;: &quot;#ff4141&quot;
 						}"
-						{% elif movie.Average_Count == '0.02' %}
+						{% elif movie.Average_Count == '0.2' %}
 						data-fill="{
 						&quot;color&quot;: &quot;#ff4141&quot;
 						}"
-						{% elif movie.Average_Count == '0.01' %}
+						{% elif movie.Average_Count == '0.1' %}
 						data-fill="{
 						&quot;color&quot;: &quot;#ff4141&quot;
 						}"

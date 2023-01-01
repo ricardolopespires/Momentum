@@ -24,15 +24,16 @@ urlpatterns = [
     path('',views.indextemplateview, name = 'index'),
 
 
-    #------------------ Livros --------------------------------------
+    #------------------ Livros -----------------------------------------------------
     path('livros/lancamentos/',views.livros, name = 'livros'),
     path('livros/mais-livros/',views.mais_lido, name = 'mais_lido'),
     path('livros/autores/', views.autores, name = 'autores'),
     path('livros/ranking/', views.ranking, name = 'ranking'),
-    path('livros/<livro_id>/details', views.livro_details, name = 'livro_details'),       
+    path('livros/<livro_id>/details', views.livro_details, name = 'livro_details'),
+    path('',include('analytics.urls', namespace = 'analytics')),       
     
 
-    #----------------------- Movie -----------------------------------
+    #----------------------- Movie -----------------------------------------------------
     path('livros/filmes/', views.movie, name = 'movie'),
     path('livros/filmes/cinema', views.cinema, name = 'cinema'),
     path('livros/filmes/breve/',views.breve, name = 'breve'),
@@ -42,18 +43,20 @@ urlpatterns = [
 
 
 
-    #------------------------- Accounts -------------------------------
+    #------------------------- Accounts --------------------------------------------------
 
     path('',include('accounts.urls')),
 
     
-    #---------------------------------- Newsletter ----------------------
+    #---------------------------------- Newsletter ----------------------------------------
     path('newsletter/', views.newsletter, name = 'newsletter'),
 
-    #------------  Dashboard  -------------------------------------------
+
+
+
+    #------------  Dashboard  --------------------------------------------------------------
     path('', include('dashboard.urls', namespace = 'dashboard')),
-    path('livros/',include('livros.urls', namespace = 'livros')),
-    path('author', include('author.urls', namespace = 'author')),
+    path('livros/',include('livros.urls', namespace = 'livros')),   
     path('director', include('director.urls', namespace = 'director')),
     path('actor', include('actor.urls', namespace = 'actor')),
     path('movie', include('movie.urls', namespace = 'movie')),
@@ -61,7 +64,7 @@ urlpatterns = [
     
 
     #-----------------------------------------MANAGEMENT --------------------
-    #path('management/',include('management.urls', namespace = 'management')),
+    path('',include('management.urls', namespace = 'management')),
     #path('movie/',include('movie.urls', namespace = 'movie')),
     #path('analytics/', include('analytics.urls', namespace = 'analytics')),
 

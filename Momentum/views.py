@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse, get_object_or_404
 #from django.views.generic import View, TemplateView, ListView ,DeleteView
 #from movie.models import Movie, Trailler
 from livros.models import Ebook, Review
-from author.models import Author
+from autor.models import Autor
 from django.core.paginator import Paginator
 #from accounts.forms import NewsletterForm
 #from accounts.models import User, Newsletter
@@ -12,6 +12,9 @@ from django.db.models import Avg
 from django.http import HttpResponseRedirect
 import datetime
 from datetime import date
+
+#from dashboard.recomentador import content_recommender, recommender_20
+
 
 def indextemplateview(request):
     livros = Ebook.objects.all()
@@ -28,7 +31,7 @@ def mais_lido(request):
 
 
 def autores(request):
-    autores = Author.objects.all()
+    autores = Autor.objects.all()
     return render(request, 'initial/livros/autores.html',{'autores':autores})
 
 
@@ -41,12 +44,30 @@ def ranking(request):
 def livro_details(request, livro_id):
     livro = get_object_or_404(Ebook, id = livro_id)
     reviews = Review.objects.filter(livro = livro)
-    reviews_avg = str(reviews.aggregate(Avg('rate'))['rate__avg'])
-    livro.Average_Rating = reviews_avg.replace('.',',')
-    livro.Average_Count = "0." + reviews_avg.replace(',','.')[:1]
+    reviews_avg = reviews.aggregate(Avg('rate'))['rate__avg']
+
+    if reviews_avg == None:
+        reviews_avg = 0
+    else:
+        reviews_avg
+
+    
+    livro.Average_Rating = str(reviews_avg)
+    livro.Average_Count = str(reviews_avg /10)
     livro.Votes_Count = reviews.count()    
     livro.save()
-    return render (request, 'initial/livros/details.html',{'livro':livro, 'reviews':reviews })
+
+    title = str(livro.titulo)
+   
+    #recomendacoes = content_recommender(title)
+
+
+    return render (request, 'initial/livros/details.html',{
+
+        'livro':livro, 'reviews':reviews, 'reviews_avg':reviews_avg,
+        #'recomendacoes':recomendacoes, 
+
+        })
 
 
 #-----------------------------------------  Movie -----------------------------

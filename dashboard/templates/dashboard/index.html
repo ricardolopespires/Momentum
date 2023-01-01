@@ -8,6 +8,7 @@
 {% block dashboard %}
 {{ block.super }}
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&family=Roboto:wght@300;400&display=swap');
 .number2, .number3,.number4, .number5
 {
   font-size: 19px;
@@ -30,7 +31,7 @@
 
 }
 
-.circle-rating-pro
+.average_count
 {
   right: 40px;
 }
@@ -48,6 +49,41 @@
     font-size: 19px;
 }
 
+.img-livro
+{
+    position: relative;
+    left: 0px;
+    border: transparent;
+}
+
+.user-top
+{
+    display: flex;
+    flex-direction: row;
+    ustify-content:  space-between ;
+}
+
+.experiencia
+{
+    font-size: 19px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    
+
+}
+
+.exp-count
+{
+    font-size: 24px;
+    font-weight: 100;
+}
+
+.barra
+{
+    font-weight: 400;
+    margin: 0px 5px 0px 5px;
+
+}
 </style>
 
 
@@ -61,7 +97,29 @@
                 <div class="image image-user"> <img src="{% static 'images/demo/user-profile.jpg' %}" class="rounded" width="155"> </div>
                 {% endif %}
                 <div class="ml-3 w-100">
-                    <h4 class="mb-0 mt-0">{{ user|title  }}</h4> <span class=" date text-dark">Membro desde {{ user.date_joined |date }}</span>
+                    <div class="user-top">
+                        <h4 class="mb-0 mt-0">{{ user|title  }}</h4>
+                        <div class="badges ml-2 mt-0">
+                            {% for experiencia in experiencias %}                      
+                            <span class="badge badge-success">Nível {{ experiencia.nivel }}</span>
+                            {% endfor %}                      
+                        </div>
+                    </div>
+                    <div class="user-body">
+                        <span class="experiencia text-dark">Experiência:
+                            {% for experiencia in experiencias %} 
+                            <span class="exp-count clock">{{ experiencia.pontuacao }}
+                            <span class="barra">/</span>{{ experiencia.total}}</span>
+                            {% endfor %} 
+                        </span>
+                        <div class="progress mb-3" data-height="10">
+                            {% for experiencia in experiencias %} 
+                            <div class="progress-bar bg-success" role="progressbar" data-width="{{ experiencia.porcentagem }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            {% endfor %} 
+                        </div>                        
+                    </div> 
+                    
+                    <span class=" date text-dark">Membro desde {{ user.date_joined |date }}</span>       
                     <div class="p-2 mt-2  d-flex justify-content-between rounded text-dark stats">
                         <div class="d-flex flex-column "> <span class="articles">Média de Avaliações</span> <span class="number1 text-aling-left">
                           <div
@@ -77,7 +135,7 @@
                           data-reverse="true"
                         ><span class="rating" style="color:#42b740;">{{ user.Average_Rating }}</span></div>
                         </span> </div>
-                        <div class="d-flex flex-column number"> <span class="followers">Total de horas de leitura</span> <span class="number2">{{ user.total_horas }}/hs</span> </div>
+                        <div class="d-flex flex-column number"> <span class="followers">Total de horas de leitura</span> <span class="number2 clock">{{ user.total_horas }}/hs</span> </div>
                         <div class="d-flex flex-column number"> <span class="rating">Total de Livros Lidos</span> <span class="number3">{{ user.total_lidos }}</span></div>
                         <div class="d-flex flex-column number"> <span class="raking">Raking de colaboradores</span> <span class="number4">19</span> </div>
                         <div class="d-flex flex-column number"> <span class="publish"> Publicações</span> <span class="number5"> {{ user.Publicacoes }} </span> </div>
@@ -100,274 +158,409 @@
            </div>  
      </div>
      <div class="row mt-5">
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">The Wild Things Are</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.86"
-                                data-animation-start-value="0.86"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#42b740&quot;
-                                }"
-                                data-empty-fill="#def6de"
-                                data-reverse="true"
-                              ><span style="color:#42b740;">8.6</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-                
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Central Intelligence</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.6"
-                                data-animation-start-value="0.6"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#ff4141&quot;
-                                }"
-                                data-empty-fill="#ffe1e1"
-                                data-reverse="true"
-                              ><span style="color:#ff4141;">6.0</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
+        {% for livro in recommender_20 %}
+       <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="item-listing-container-skrn">
+            <a  href="{% url 'dashboard:livro_detail' livro.id %}">
+                {% if livro.Poster %}
+                <img  class="img-livro" src="{{ livro.Poster }}" alt="Listing">
+                {% else %}
+                <img src="http://via.placeholder.com/500x707" alt="Listing">
+                {% endif %}
+            </a>
+           
+                <div class="item-listing-text-skrn">
+                                <div class="item-listing-text-skrn-vertical-align"><h6><a href="{% url 'livro_details' livro.id %}">{{ livro.Title |truncatechars:19 }}</a></h6>
+                                    <div
+                                    class="circle-rating-pro"
+                                    data-value="{{ livro.Average_Count }}"
+                                    data-animation-start-value="{{ livro.Average_Count }}"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    {% if movie.Average_Count == '0.6' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.59' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.58' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.57' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.56' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.55' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.54' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.53' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.52' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.51' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.50' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.49' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.48' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.47' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.46' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.45' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.44' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.43' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.42' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.41' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.40' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#e6e600&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.39' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.38' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.37' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.36' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.35' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.34' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.33' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.32' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.31' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.30' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_ount == '0.29' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_ount == '0.28' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_ount == '0.27' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_ount == '0.26' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_ount == '0.25' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_ount == '0.24' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_ount == '0.23' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_ount == '0.22' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_ount == '0.21' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_ount == '0.20' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.19' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.18' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.17' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.16' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.15' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.14' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.13' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.12' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.11' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.10' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.09' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.08' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.07' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.06' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.05' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.04' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.03' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.02' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == '0.01' %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% elif movie.Average_Count == 0.0 %}
+                                    data-fill="{
+                                    &quot;color&quot;: &quot;#ff4141&quot;
+                                    }"
+                                    {% else %}
+                                    data-fill="{
+                                        &quot;color&quot;: &quot;#42b740&quot;
+                                        }"
+                                    {% endif %}
+                                    data-empty-fill="#ffe1e1"
+                                    data-reverse="true"
+                                >{% if movie.Average_Count == 0.6 %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.59' %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.58' %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.57' %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.56' %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.55' %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.54' %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.53' %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.52' %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.51' %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.50' %}
+                                <span style="color:#e6e600;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.49' %}
+                                <span style="color:#e6e600;">{{movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.48' %}
+                                <span style="color:#e6e600;">{{movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.47' %}
+                                <span style="color:#e6e600;">{{movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.46' %}
+                                <span style="color:#e6e600;">{{movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.45' %}
+                                <span style="color:#e6e600;">{{movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.44' %}
+                                <span style="color:#e6e600;">{{movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.43' %}
+                                <span style="color:#e6e600;">{{movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.42' %}
+                                <span style="color:#e6e600;">{{movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.41' %}
+                                <span style="color:#e6e600;">{{movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.40' %}
+                                <span style="color:#e6e600;">{{movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.39' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.38' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.37' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.36' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.35' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.34' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.33' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.32' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.31' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.30' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.29' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.28' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.27' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.26' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.25' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.24' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.23' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.22' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.21' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.20' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.19' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating}}</span>
+                                {% elif movie.Average_Count == '0.18' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating}}</span>
+                                {% elif movie.Average_Count == '0.17' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating}}</span>
+                                {% elif movie.Average_Count == '0.16' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating}}</span>
+                                {% elif movie.Average_Count == '0.15' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating}}</span>
+                                {% elif movie.Average_Count == '0.14' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating}}</span>
+                                {% elif movie.Average_Count == '0.13' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating}}</span>
+                                {% elif movie.Average_Count == '0.12' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating}}</span>
+                                {% elif movie.Average_Count == '0.11' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating}}</span>
+                                {% elif movie.Average_Count == '0.10' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating}}</span>
+                                {% elif movie.Average_Count == '0.09' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.08' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.07' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.06' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.05' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.04' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.03' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.02' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.01' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% elif movie.Average_Count == '0.0' %}
+                                <span style="color:#ff4141;">{{ movie.Average_Rating }}</span>
+                                {% else %}
+                                <span style="color:#42b740;">{{ livro.Average_Rating }}</span>
+                                {% endif %}
+                                </div><!-- close .item-listing-text-skrn-vertical-align -->
+                                </div><!-- close .item-listing-text-skrn-vertical-align -->
+                            
+                </div><!-- close .item-listing-text-skrn-vertical-align -->
             
-                
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Zoolander No. 2</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.86"
-                                data-animation-start-value="0.86"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#42b740&quot;
-                                }"
-                                data-empty-fill="#def6de"
-                                data-reverse="true"
-                              ><span style="color:#42b740;">8.6</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-            
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Bad Neighbors 2</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.72"
-                                data-animation-start-value="0.72"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#42b740&quot;
-                                }"
-                                data-empty-fill="#def6de"
-                                data-reverse="true"
-                              ><span style="color:#42b740;">7.2</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-            
-                
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Star Wars: Rogue One</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.86"
-                                data-animation-start-value="0.86"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#42b740&quot;
-                                }"
-                                data-empty-fill="#def6de"
-                                data-reverse="true"
-                              ><span style="color:#42b740;">8.6</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-                
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">The Imitation Game</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.6"
-                                data-animation-start-value="0.6"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#ff4141&quot;
-                                }"
-                                data-empty-fill="#ffe1e1"
-                                data-reverse="true"
-                              ><span style="color:#ff4141;">6.0</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-                
-                
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Fantastic Beasts</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.86"
-                                data-animation-start-value="0.86"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#42b740&quot;
-                                }"
-                                data-empty-fill="#def6de"
-                                data-reverse="true"
-                              ><span style="color:#42b740;">8.6</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-                
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Edge of Tomorrow</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.72"
-                                data-animation-start-value="0.72"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#42b740&quot;
-                                }"
-                                data-empty-fill="#def6de"
-                                data-reverse="true"
-                              ><span style="color:#42b740;">7.2</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-                
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Allegiant</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.86"
-                                data-animation-start-value="0.86"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#42b740&quot;
-                                }"
-                                data-empty-fill="#def6de"
-                                data-reverse="true"
-                              ><span style="color:#42b740;">8.6</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-                
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Lo and Behold</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.6"
-                                data-animation-start-value="0.6"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#ff4141&quot;
-                                }"
-                                data-empty-fill="#ffe1e1"
-                                data-reverse="true"
-                              ><span style="color:#ff4141;">6.0</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-                
-                
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Drive</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.86"
-                                data-animation-start-value="0.86"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#42b740&quot;
-                                }"
-                                data-empty-fill="#def6de"
-                                data-reverse="true"
-                              ><span style="color:#42b740;">8.6</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-                
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="item-listing-container-skrn">
-                        <a href="dashboard-movie-profile.html"><img src="http://via.placeholder.com/500x707" alt="Listing"></a>
-                        <div class="item-listing-text-skrn">
-                            <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Nightcrawler</a></h6>
-                              <div
-                                class="circle-rating-pro"
-                                data-value="0.72"
-                                data-animation-start-value="0.72"
-                                data-size="32"
-                                data-thickness="3"
-                                data-fill="{
-                                  &quot;color&quot;: &quot;#42b740&quot;
-                                }"
-                                data-empty-fill="#def6de"
-                                data-reverse="true"
-                              ><span style="color:#42b740;">7.2</span></div>
-                            </div><!-- close .item-listing-text-skrn-vertical-align -->
-                        </div><!-- close .item-listing-text-skrn -->
-                    </div><!-- close .item-listing-container-skrn -->
-        </div><!-- close .col -->
-                
+        </div><!-- close .item-listing-container-skrn -->
+    </div><!-- close .col -->
+        {% endfor %}
     </div><!-- close .row -->	
 </div>
 

@@ -13,9 +13,9 @@ urlpatterns = [
 
 
     #---------------------------------- Settings  profile ----------------------------
-    #path('profile/user/settings/',views.profile_users, name = 'profile'), 
+    path('profile/user/settings/',views.profile_users, name = 'profile'), 
     path('profile/user/<int:pk>/detials/', views.profile_details, name = 'details'),     
-    path('prfile/user/settings/',views.profile_users, name = 'profile'),
+    path('profile/user/settings/',views.profile_users, name = 'profile'),
 
   
 ]

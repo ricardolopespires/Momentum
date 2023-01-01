@@ -1,0 +1,368 @@
+{% extends 'management/base.html' %}
+{% load static %}
+
+
+
+{% block title %}Momentum | Management Dashboard gestão movie   {% endblock %}
+
+
+{% block dashboard %}
+{{ block.super }}
+<style type="text/css">
+  
+
+.dropdown-item
+{
+    background-color: #f4f6f9;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Nunito", "Segoe UI", arial;
+    color: #6c757d;
+}
+.dropdown-item input
+{
+    position: relative;
+    left: -25px;
+}
+
+
+</style>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="card card-statistic-2">
+                <div class="card-stats">
+                  <div class="card-stats-title">Estatisticas de usuários -
+                    <div class="dropdown d-inline">
+                      <a class="font-weight-600 dropdown-toggle" data-toggle="dropdown" href="#" id="orders-month">
+                        {% if  month == 1 %}
+                          Janeiro
+                        {% elif month == 2 %}
+                          Fevereiro
+                        {% elif month == 3 %}
+                          Março
+                        {% elif month == 4 %}
+                          Abrir
+                        {% elif month == 5 %}
+                          Maio
+                        {% elif month == 6 %}
+                          Junho
+                        {% elif month == 7 %}
+                          Julho
+                        {% elif month == 8 %}
+                          Agosto
+                        {% elif month == 9 %}
+                          Setembro
+                        {% elif month == 10 %}
+                          Outubro
+                        {% elif month == 11 %}
+                          Novembro
+                        {% elif month == 12 %}
+                          Dezembro
+                        {% endif %}
+                      </a>
+                      <form action="." method="get">
+
+                      <ul class="dropdown-menu dropdown-menu-sm">
+                        <li class="dropdown-title">Select Month</li>
+
+                        <li><a href="#" class="dropdown-item"><input class="dropdown-item input" type="submit" name="mes" value="Janeiro"></a></li>
+                        <li><a href="#" class="dropdown-item">Fevereiro</a></li>
+                        <li><a href="#" class="dropdown-item">Março</a></li>
+                        <li><a href="#" class="dropdown-item">Abril</a></li>
+                        <li><a href="#" class="dropdown-item">Maio</a></li>
+                        <li><a href="#" class="dropdown-item">Junho</a></li>
+                        <li><a href="#" class="dropdown-item">Julho</a></li>
+                        <li><a href="#" class="dropdown-item active">Agosto</a></li>
+                        <li><a href="#" class="dropdown-item">Setembro</a></li>
+                        <li><a href="#" class="dropdown-item">Outubro</a></li>
+                        <li><a href="#" class="dropdown-item">Novembro</a></li>
+                        <li><a href="#" class="dropdown-item">Dezembro</a></li>
+                      </ul>
+                    </form>
+                    </div>
+                  </div>
+                  <div class="card-stats-items">
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count">24</div>
+                      <div class="card-stats-item-label">Pendentes</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count">12</div>
+                      <div class="card-stats-item-label">Cadastrado</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count">23</div>
+                      <div class="card-stats-item-label">Cancelado</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-icon shadow-primary bg-primary">
+                  <i class="fas fa-child"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Total Usuários</h4>
+                  </div>
+                  <div class="card-body">
+                    54
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="card card-statistic-2">
+                <div class="card-stats">
+                  <div class="card-stats-title">Estatisticas de Livros 
+                  </div>
+                   <div class="card-stats-items">
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count">{% if pendentes > 0 %}{{ pendentes}}{% else %}0{% endif %}</div>
+                      <div class="card-stats-item-label">Pendentes</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count">{% if cadastrados > 0 %}{{ cadastrados }}{% else %}0{% endif %}</div>
+                      <div class="card-stats-item-label">Cadastrado</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count">{% if cancelado > 0 %}{{ cancelado }}{% else %}0{% endif %}</div>
+                      <div class="card-stats-item-label">Cancelado</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-icon shadow-primary bg-primary">
+                  <i class="fab fa-leanpub"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Total Livros</h4>
+                  </div>
+                  <div class="card-body">
+                    {% if total_livros > 0 %}
+                      {{ total_livros }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="card card-statistic-2">
+                <div class="card-stats">
+                  <div class="card-stats-title">Estatisticas de Questões                   
+                  </div>
+                  <div class="card-stats-items">
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count">24</div>
+                      <div class="card-stats-item-label">Pendentes</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count">12</div>
+                      <div class="card-stats-item-label">Resolvendo</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count">23</div>
+                      <div class="card-stats-item-label">Concluidas</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-icon shadow-primary bg-primary">
+                  <i class="fas fa-list-ol"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Total Questionario</h4>
+                  </div>
+                  <div class="card-body">
+                    59
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Livros vs Leitura</h4>
+                </div>
+                <div class="card-body">
+                  <canvas id="myChart" height="158"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card gradient-bottom">
+                <div class="card-header">
+                  <h4>Top 5 Livros</h4>
+                  <div class="card-header-action dropdown">
+                    <a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Month</a>
+                    <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                      <li class="dropdown-title">Select Period</li>
+                      <li><a href="#" class="dropdown-item">Today</a></li>
+                      <li><a href="#" class="dropdown-item">Week</a></li>
+                      <li><a href="#" class="dropdown-item active">Month</a></li>
+                      <li><a href="#" class="dropdown-item">This Year</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-body" id="top-5-scroll">
+                  <ul class="list-unstyled list-unstyled-border">
+                    <li class="media">
+                      <img class="mr-3 rounded" width="55" src="../assets/img/products/product-3-50.png" alt="product">
+                      <div class="media-body">
+                        <div class="float-right"><div class="font-weight-600 text-muted text-small">86 Sales</div></div>
+                        <div class="media-title">oPhone S9 Limited</div>
+                        <div class="mt-1">
+                          <div class="budget-price">
+                            <div class="budget-price-square bg-primary" data-width="64%"></div>
+                            <div class="budget-price-label">$68,714</div>
+                          </div>
+                          <div class="budget-price">
+                            <div class="budget-price-square bg-danger" data-width="43%"></div>
+                            <div class="budget-price-label">$38,700</div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="media">
+                      <img class="mr-3 rounded" width="55" src="../assets/img/products/product-4-50.png" alt="product">
+                      <div class="media-body">
+                        <div class="float-right"><div class="font-weight-600 text-muted text-small">67 Sales</div></div>
+                        <div class="media-title">iBook Pro 2018</div>
+                        <div class="mt-1">
+                          <div class="budget-price">
+                            <div class="budget-price-square bg-primary" data-width="84%"></div>
+                            <div class="budget-price-label">$107,133</div>
+                          </div>
+                          <div class="budget-price">
+                            <div class="budget-price-square bg-danger" data-width="60%"></div>
+                            <div class="budget-price-label">$91,455</div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="media">
+                      <img class="mr-3 rounded" width="55" src="../assets/img/products/product-1-50.png" alt="product">
+                      <div class="media-body">
+                        <div class="float-right"><div class="font-weight-600 text-muted text-small">63 Sales</div></div>
+                        <div class="media-title">Headphone Blitz</div>
+                        <div class="mt-1">
+                          <div class="budget-price">
+                            <div class="budget-price-square bg-primary" data-width="34%"></div>
+                            <div class="budget-price-label">$3,717</div>
+                          </div>
+                          <div class="budget-price">
+                            <div class="budget-price-square bg-danger" data-width="28%"></div>
+                            <div class="budget-price-label">$2,835</div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="media">
+                      <img class="mr-3 rounded" width="55" src="../assets/img/products/product-3-50.png" alt="product">
+                      <div class="media-body">
+                        <div class="float-right"><div class="font-weight-600 text-muted text-small">28 Sales</div></div>
+                        <div class="media-title">oPhone X Lite</div>
+                        <div class="mt-1">
+                          <div class="budget-price">
+                            <div class="budget-price-square bg-primary" data-width="45%"></div>
+                            <div class="budget-price-label">$13,972</div>
+                          </div>
+                          <div class="budget-price">
+                            <div class="budget-price-square bg-danger" data-width="30%"></div>
+                            <div class="budget-price-label">$9,660</div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="media">
+                      <img class="mr-3 rounded" width="55" src="../assets/img/products/product-5-50.png" alt="product">
+                      <div class="media-body">
+                        <div class="float-right"><div class="font-weight-600 text-muted text-small">19 Sales</div></div>
+                        <div class="media-title">Old Camera</div>
+                        <div class="mt-1">
+                          <div class="budget-price">
+                            <div class="budget-price-square bg-primary" data-width="35%"></div>
+                            <div class="budget-price-label">$7,391</div>
+                          </div>
+                          <div class="budget-price">
+                            <div class="budget-price-square bg-danger" data-width="28%"></div>
+                            <div class="budget-price-label">$5,472</div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-footer pt-3 d-flex justify-content-center">
+                  <div class="budget-price justify-content-center">
+                    <div class="budget-price-square bg-primary" data-width="20"></div>
+                    <div class="budget-price-label">Visualizações</div>
+                  </div>
+                  <div class="budget-price justify-content-center">
+                    <div class="budget-price-square bg-danger" data-width="20"></div>
+                    <div class="budget-price-label">Leitura</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Os ultimos livros adicionados</h4>
+                  <div class="card-header-action">
+                    <a href="{% url 'management:list_livros' %}" class="btn btn-danger">Mais informações <i class="fas fa-chevron-right"></i></a>
+                  </div>
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive table-invoice">
+                    <table class="table table-striped">
+                      <tr>
+                        <th>Id</th>
+                        <th>livro</th>
+                        <th>Categoria</th>
+                        <th>Status</th>
+                        <th>Data</th>
+                        <th>Action</th>
+                      </tr>
+                      {% for livro in ultimos %}
+                      <tr>                        
+                        <td><a href="#">{{ livro.id }}</a></td>
+                        <td class="font-weight-600">{{ livro.Title |truncatechars:28 }}</td>
+                        <td>{% for genero in livro.Genero.all %} {{ genero }},<br> {% endfor %}</td>
+                        <td>
+                          {% if livro.status  == 'pendentes' %}
+                          <div class="badge badge-warning">{{ livro.status }}</div>
+                          {% elif livro.status  == 'cadastrado' %}
+                          <div class="badge badge-success">{{ livro.status }}</div>
+                          {% elif livro.status  == 'cancelado' %}
+                          <div class="badge badge-danger">{{ livro.status }}</div>
+                          {% endif %}
+                        </td>
+                        <td>{{ livro.Created |date:"d-m-Y"}}</td>
+                        <td>
+                          <a href="{% url 'management:livro_detail' livro.id %}" class="btn btn-outline-primary">Detail</a>
+                        </td>                        
+                      </tr>
+                      {% endfor %}                      
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+
+
+
+
+
+
+
+{% endblock %}

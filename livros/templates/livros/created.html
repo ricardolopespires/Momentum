@@ -94,9 +94,169 @@ label
     outline: none !important;
 }
 
+
+.descricao
+{
+    width: 100%;
+    height: 400px;
+}
+
 </style>
-
-
+<div style="height: 110px!important;" class="section-header">
+    <h5 style="margin-top: -28px; color:#cccccc;" class="position-absolute ml-2 mb-4">Livro</h5>
+    <br>
+    <h1 style="color: #8898aa; font-size: 40px;" class="mt-4 ml-2">Adicionar o livro</h1>
+    <div class="section-header-breadcrumb">       
+        <i style="font-size: 70px; color: #000066;" class="fas  fa-server"></i>
+    </div>
+</div>
+<div class="section-body">
+    <h2 class="section-title">Adicionar o seu novo livro</h2>
+    <p class="section-lead">
+        Os melhores filmes baseados em grandes histórias da literatura, aqui você encontra a lista completa de filmes que em Breve serão lançados no cinemas..
+    </p>
+      <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">         
+                <div class="card">
+              <div class="card-header">
+                <h4>Formulário de adição de dados</h4>
+              </div>
+              <div class="card-body">
+                <div class="alert alert-danger">
+                  <b>Nota!</b> Os dados devem ser verdadeiro.
+                </div>
+                <form action="." method="POST"  enctype="multipart/form-data" >
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <p><label for="id_Titulo">Titulo:</label> <input type="text" name="titulo" maxlength="150" required id="id_Titulo"></p>
+                        </div>
+                    </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                            <p>
+                                <label for="id_Descricao">Descrição:</label>
+                                <textarea name="descricao" cols="40" rows="10" required id="id_Descricao" class="descricao">
+                                </textarea>
+                            </p>
+                        </div>
+                    </div>                  
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <p>
+                                <label for="id_Publicacao">Publicacao:</label>
+                                <input type="date" name="publicacao" id="id_Publicacao">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <p>
+                                <label for="id_Capa">Capa:</label>
+                                <input type="url" name="capa" maxlength="200" id="id_Capa">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <p>
+                                <label for="id_Poster">Poster:</label>
+                                <input type="url" name="poster" maxlength="200" id="id_Poster">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="text-dark mb-3 ">Genero</label>
+                            <select class="form-control" style="height: 70px;" multiple ="multiple" name="genero" size=5>
+                                {% for genero in generos %}
+                                    <option value="{{ genero.id }}">{{ genero.titulo }}</option>
+                                {% endfor %}
+                            </select><!-- End -->                             
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">                                                        
+                            <label for="exampleFormControlSelect1">Autor </label>
+                            <select style="height: 70px;" class="form-control" multiple = "multiple" name="autor" size=5>
+                                {% for autor in autores %}
+                                    <option value="{{ autor.id }}">{{ autor.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                             <p>
+                                <label for="id_editora">Edição:</label>
+                                <input type="text" name="edicao" maxlength="150" id="id_edicao">
+                            </p>
+                        </div>
+                    </div>                   
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="id_editora">Editora</label>
+                            <select name="editora" class="form-control" id="id_editora">
+                                {% for editora in editoras %}
+                              <option value="{{ editora.id }}">{{ editora.nome }}</option>                              
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <p>
+                                <label for="id_idioma">Idioma:</label>
+                                <select class="form-control" name="idioma" id="id_idioma">
+                                    <option value="português">Português</option>
+                                    <option value="inglês" selected>Inglês</option>
+                                    <option value="espanhol">Espanhol</option>
+                                    <option value="italiano">Italiano</option>
+                                    <option value="francês">Francês</option>
+                                    <option value="alemão">Alemão</option>
+                                    <option value="catalão">Catalão</option>
+                                </select>
+                            </p>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <p>
+                                <label for="id_Paginas">Paginas:</label>
+                                <input type="number" name="Paginas" required id="id_Paginas">
+                            </p>
+                        </div>
+                    </div>                  
+                    <div class="col-md-4">
+                        <div class="form-group">
+                              <p>
+                                <label for="id_isbn">ISBN-10:</label>
+                                <input type="text" name="isbn" maxlength="90" required id="id_isbn">
+                            </p>      
+                        </div>
+                    </div>                   
+                </div>                     
+                <div>
+                    {% for key, value in form.errors.items %}
+                    <span class="fieldWrapper">
+                        <div class="alert alert-danger">
+                            <b>Nota!</b> {{ key }}:{{ value }}
+                          </div>
+                        
+                    </span>
+                {% endfor %}
+                </div>         
+                <div class="card-footer text-left">
+                <button class="btn btn-success mr-1" type="submit">Cadastrar</button>
+                <button class="btn btn-danger" type="reset">Cancelar</button>
+                </form>
+                </div>
+                </div>            
+            </div>            
+        </div>
+</div>
 <div class="dashboard-body">
     <div class="row">
 		<div class="col-md-12 mb-5">
@@ -119,47 +279,13 @@ label
                                         </div>
                                     </div>                                    
                                 </section>	
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <form action="." method="POST" class="mt-5 ml-5">
-                                    {% csrf_token %}
-                                    
-                                    <p><label for="id_Title">Title:</label> <input type="text" name="Title" maxlength="150" required id="id_Title"></p>
-                                    <p><label for="id_Descricao">Descrição:</label> <textarea name="Descricao" cols="40" rows="10" required id="id_Descricao">
-                                    </textarea></p>
-                                    <p><label for="id_Publish">Publish:</label> <input type="text" name="Publish" id="id_Publish"></p>
-                                    <p><label for="id_Poster">Poster:</label> <input type="url" name="Poster" maxlength="200" id="id_Poster"></p>
-                                    <p><label for="id_Poster_url">Poster url:</label> <input type="url" name="Poster_url" maxlength="200" id="id_Poster_url"></p>                                                                      
-									<label class="text-dark mb-3 ">Genero</label>
-									<select class="form-control"  multiple ="multiple" name="genero" size=5>
-										{% for genero in genre %}
-											<option value="{{ genero.id }}">{{ genero.title }}</option>
-										{% endfor %}
-									</select><!-- End -->
-                                    <p><label for="id_Edicao">Edição:</label> <input type="number" name="Edicao" required id="id_Edicao"></p>                                                                                                            
-									<label class="text-dark mb-3 ">Autor</label>
-									<!-- Multiselect dropdown -->								
-									<label for="exampleFormControlSelect1">Autor </label>
-									<select class="form-control" multiple = "multiple" name="autor" size=5>
-											{% for autor in author %}
-											<option value="{{ autor.id }}">{{ autor.name }}</option>
-										{% endfor %}
-									</select>									 
-                                      
-                                    <p><label for="id_Editora">Editora:</label> <input type="text" name="Editora" maxlength="150" id="id_Editora"></p>
-                                    <p><label for="id_Linguagem">Linguagem:</label> <input type="text" name="Linguagem" maxlength="150" id="id_Linguagem"></p>
-                                    <p><label for="id_Paginas">Paginas:</label> <input type="number" name="Paginas" required id="id_Paginas"></p>
-                                    <p><label for="id_ISBN">ISBN:</label> <input type="text" name="ISBN" maxlength="90" required id="id_ISBN"></p>                                                                       
-                                    <div class="text-left">
-                                        <button type="submit" class="btn btn-default waves-effect waves-light">Criar</button>
-                                    </div>
-                                </form>
-                            </div>
+                            </div>   
 							
-                         </div>						   
+                    </div>						   
 				 </div>
 			</div>
 		</div>				
 	</div>
 </div>			
 {% endblock %}
+

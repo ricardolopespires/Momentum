@@ -44,6 +44,13 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 /*
 =============================================== 01. FONT STYLES ===============================================
 */
+
+/*DIGITAL CLOCK FONT*/
+@font-face{
+ font-family:'digital-7';
+ src: url('../fonts/digital-7.ttf');
+}
+
 body, input, textarea, select { 
 	font-family: 'Lato', sans-serif;
 	line-height: 1.8; 
@@ -4686,4 +4693,63 @@ li.flex-active-slide.progression_studios_animate_right .progression-studios-slid
 .paragraph
 {
 	text-align: justify!important;
+}
+
+
+
+
+
+
+
+
+#messages
+{
+    height: 110px!important; 
+    width: 109%!important;
+}
+
+#messages h1
+{
+    margin-top: -28px!important;
+}
+
+.info
+{
+  
+  color: var(--info)!important;
+}
+
+.border-info
+{
+  border-left: 9px solid  var(--info)!important;
+}
+
+
+
+.error
+{
+  
+  color: var(--red)!important;
+}
+
+.border-error
+{
+  border-left: 9px solid  var(--red)!important;
+}
+
+.success
+{
+  
+  color: var(--green)!important;
+}
+
+.border-success
+{
+  border-left: 9px solid  var(--green)!important;
+}
+
+
+.clock
+{
+		font-family: 'digital-7', sans-serif;
 }

@@ -1,3 +1,4 @@
+'''
 from django.contrib import admin
 from .models import Actor
 from import_export.admin import ImportExportModelAdmin
@@ -10,3 +11,6 @@ class ActorAdmin(ImportExportModelAdmin):
     list_filter = ['id', 'name']
     search_fields = ['id', 'name']
     prepopulated_fields = {'slug':('name',)}
+
+
+'''

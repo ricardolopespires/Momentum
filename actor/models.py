@@ -1,3 +1,4 @@
+'''
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
@@ -20,3 +21,4 @@ class Actor(models.Model):
 		if not self.slug:
 			self.slug = slugify(self.name)
 		return super().save(*args, **kwargs)
+'''

@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
-from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login, get_user_model
 from django.http import HttpResponseRedirect
+from .forms import LoginForm, RegisterForm
+from livros.models import Leitura
+from genero.models import Genero
 from .models import User
 
 # Create your views here.
@@ -22,7 +24,7 @@ def loggin(request):
                     login(request,user)
                     #Redirect to success page.
                     form = LoginForm()                
-                    return redirect('management:manager')
+                    return redirect('management:index')
                 else:
                     login(request,user)
                     #Redirect to success page.
@@ -49,8 +51,19 @@ def register(request):
    
 def profile_users(request):
     profiles = User.objects.all()    
+    leituras = Leitura.objects.filter(user_id = request.user.id)
+    categorias = Genero.objects.filter(usuarios = request.user.id )
+
     
-    return render(request, 'profile/profile.html',{'profiles':profiles})
+
+   
+    return render(request, 'profile/index.html',{
+
+        'profiles':profiles,
+        'leituras':leituras,
+        'categorias':categorias,
+
+        })
 
 
 def profile_details(request, pk):

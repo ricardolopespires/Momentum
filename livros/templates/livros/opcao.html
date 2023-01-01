@@ -1,0 +1,130 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block title %}Momentum | Management Dashboard gestão movie   {% endblock %}
+
+
+{% block dashboard %}
+{{ block.super }}
+<style type="text/css">
+
+
+.services
+{
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+
+.service-box
+{
+	box-shadow: 0 0 4px 0 #ffa709;
+	padding: 15px;
+	position: relative;
+
+}
+
+.icon-title
+{
+	font-size: 40px !important;
+	margin-bottom: 20px;
+	background: linear-gradient(to right, #ff105f, #ffad06);
+	-webkit-background-clip: text;
+	color: transparent;
+}
+
+p
+{
+	text-align: justify;
+}
+
+.link
+{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: block;
+	text-align: center;
+	position: absolute;
+	bottom: -20px;
+	right: 20px;
+	background: linear-gradient(to right, #ff105f, #ffad06);
+
+}
+
+.span
+{
+	background: linear-gradient(to right, #ff105f, #ffad06);
+	-webkit-background-clip: text;
+	color: transparent;
+}
+
+.icone
+{
+	color: #fff;
+	font-size: 25px!important;
+	padding-top: 9px;
+}
+
+.icone:hover
+{
+	padding-top:6px ;
+	font-size: 28px!important;
+
+	
+}
+</style>
+
+<div style="height: 110px!important;" class="section-header">
+    <h5 style="margin-top: -28px; color:#cccccc;" class="position-absolute ml-2 mb-4">Livro</h5>
+    <br>
+
+    <h1 style="color: #8898aa; font-size: 40px;" class="mt-4 ml-2 bg-white">Opção</h1>
+    <div class="section-header-breadcrumb">       
+        <i style="font-size: 70px; color: #000066;" class="fas fa-sitemap"></i>
+    </div>
+    <br>
+    
+</div>
+<div class="section-body">
+    <a style="position: relative;  cursor: pointer; z-index: 9999999999;" href="{% url 'dashboard:manager' %}">
+        <div class=" float-left icon-top text-dark add-despesas " data-toggle="tooltip" data-placement="top" title="Voltar">
+            <i style="font-size: 40px;" class="fas fa-reply-all"></i>
+        </div>
+    </a>
+    <br>
+ <h2 class="section-title  ">Lista de opção para adicionar o <span class="span">livro</span></h2>
+    <p class="section-lead">
+    Escolha a opção que deseja adicionar o novo livro, de forma manualmente ou via link da amazon.
+    </p> 
+        <div class="row">
+    	<div class="col-md-6">
+    		<div class="service-box">
+    			<i class="far fa-keyboard icon-title"></i>
+    			<h3>add <span class="span">Manualmente</span></h3>
+    			<p>Os dados do livro sera preenchido pelo usuário.</p>
+    			<a class="link" href="{% url 'livros:created' %}"> <i class="fa fa-arrow-right icone"></i></a>
+    		</div>
+    	</div>
+    	<div class="col-md-6">
+    		<div class="service-box">
+    			<i class="fab fa-amazon icon-title"></i>
+    			<h3>Search <span class="span">Amazon</span></h3>
+    			<p>Os dados do livro será preenchido pelo link do livro do site do amazon.</p>
+    			<a class="link" href="{% url 'livros:amazon' %}"> <i class="fa fa-arrow-right icone"></i></a>
+    		</div>
+    	</div>
+    	<div class="col-md-6 mt-5">
+    		<div class="service-box">
+    			<i class="fas fa-book icon-title"></i>
+    			<h3>Search <span class="span">Z-Library</span></h3>
+    			<p>Os dados do livro será preenchido pelo link do livro do site do amazon.</p>
+    			<a class="link" href="{% url 'livros:z-library' %}"> <i class="fa fa-arrow-right icone"></i></a>
+    		</div>
+    	</div>
+    </div>
+</div>
+
+
+{% endblock %}

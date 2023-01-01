@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}" />
   <title>Momentum | Dashboard de Gerenciamento de Projetos </title>
 
   <!-- General CSS Files -->
@@ -17,7 +17,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css">
 
-
+<link href="{% static 'css/editor.css' %}" type="text/css" rel="stylesheet"/>
   <!-- CSS Libraries -->
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="{% static 'node_modules/jqvmap/dist/jqvmap.min.css'%}">
@@ -102,25 +102,101 @@
 }
 
 
+
+
+
+
+
+#messages
+{
+    height: 110px!important; 
+    width: 109%!important;
+}
+
+#messages h1
+{
+    margin-top: -28px!important;
+}
+
+.info
+{
+  
+  color: var(--info)!important;
+  position: relative;
+  margin-top: 40px;
+}
+
+.border-info
+{
+  border-left: 9px solid  var(--info)!important;
+}
+
+
+
+.error
+{
+  
+  color: var(--red)!important;
+  position: relative;
+  margin-top: 40px;
+}
+
+.border-error
+{
+  border-left: 9px solid  var(--red)!important;
+}
+
+.success
+{
+  
+  color: var(--green)!important;
+  position: relative;
+  margin-top: 40px;
+}
+
+.border-success
+{
+  border-left: 9px solid  var(--green)!important;
+}
+
+
 </style>
 
 </head>
+    <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+    .time
+    {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      color: #fff;
+    }
+        .border-info
+    {
+      border-left: 10px solid #007bff ;    
+    }
+
+    .border-info .info i
+    {
+      color: #007bff;
+      font-size: 70px;
+      margin-top: -10px;
+    }
+    </style>
 
 <body>
   <div id="app">
     <div class="main-wrapper">
       <div class="navbar-bg bg-background"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <form class="form-inline mr-auto"  method='GET' class='' action='.'>
+       <form class="form-inline mr-auto"  method='GET' class='' action='.'>
           <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
-          </ul>
-          <div class="search-element">
-            <input type="text" name="search" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" style="" data-original-title="" title="" autofocus="autofocus">
-            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-            <div class="search-backdrop"></div>           
-          </div>
+            <a class="nav-link time clock" id="timer" href="#">00 : 00:00</a>
+          </ul>          
         </form>
         <ul class="navbar-nav navbar-right">
           <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="fas fa-people-arrows"></i></a>
@@ -263,11 +339,11 @@
             {% endif %}
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title"> Conectou: <span >{{ user.last_login |date:"f" }}</span> Min</div>
-              <a href="#" class="dropdown-item has-icon">
+              <a href="{% url 'profile' %}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> {{ user }}</a>
               <a href="features-activities.html" class="dropdown-item has-icon">
               {% if user.is_authenticated %}
-                <i style = "color:#00ff00" class="fas fa-bolt"></i> Ativo
+                <i style = "color:#00ff00" class="fas fa-bolt"></i> XP : {{ user.experiencia }}
               {% else %}
                  <i class="fas fa-bolt"></i> Activities
               {% endif %}
@@ -304,7 +380,8 @@
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fab fa-leanpub"></i> <span>Livros</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="{% url 'livros:verificar' %}">Adicionar</a></li>                                                                               
+                  <li><a class="nav-link" href="{% url 'livros:verificar' %}">Adicionar</a></li>
+                  <li><a class="nav-link" href="{% url 'dashboard:list_livros' %}">Lista</a></li>             
                   <li ><a class="nav-link" href="{% url 'livros:favoritos' %}">Favoritos</a></li>
                   <li><a class="nav-link" href="{% url 'livros:playlist' %}">Playlists</a></li>
                   <li><a class="nav-link" href="{% url 'livros:reviews' %}">Reviews</a></li>
@@ -333,7 +410,7 @@
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-line-chart"></i> <span>Analytics</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="#">manager</a></li>
+                  <li><a class="nav-link" href="{% url 'analytics:index' %}">manager</a></li>
                   <li><a class="nav-link" href="#">Filmes</a></li>
                   <li><a class="nav-link" href="#">Séries</a></li>
                   <li><a class="nav-link" href="#">Documentários</a></li>
@@ -356,6 +433,50 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
+        {% if messages %}
+           <div style="top: -15px; position:absolute; z-index: 999; left: -40px; width: 1110px;" class="container">
+        <div class="row">
+          <div class="col-sm-12 col-sm-offset-3">      
+              <div class="card-body">
+                {% for message in messages %} 
+                {% if message.tags == 'error' %}    
+                 <div  class="section-header border-error" id="messages">
+                  <h1 class="position-absolute ml-2 mb-4 error mt-4">Ops.....</h1>
+                  <br>
+                  <p class="mt-4 ml-2">{{ message |truncatechars:110}}.</p>
+                  <div class="section-header-breadcrumb">       
+                    <i style="font-size: 70px; " class="fas fa-window-close text-danger"></i>
+                  </div>
+                </div>          
+                {% elif message.tags == 'success' %}
+                <div class="section-header border-success" id="messages">
+                  <h1 class="position-absolute ml-2 mb-4 success mt-4">Parabéns.....</h1>
+                  <br>
+                  <br>
+                  <p class="mt-4 ml-2">{{ message |truncatechars:110 }}.</p>
+                  <div class="section-header-breadcrumb">       
+                    <i style="font-size: 70px; top: -19px; " class="fas fa-check-square success"></i>
+                  </div>
+                </div>                
+                {% elif message.tags == 'info' %}                 
+                <div class="section-header border-info" id="messages">
+                  <h1 class="position-absolute ml-2 mb-4 info mt-4">Informativo.....</h1>
+                  <br>
+                  <br>
+                  <p class="mt-4 ml-2">{{ message |truncatechars:110 }}.</p>
+                  <div class="section-header-breadcrumb">       
+                    <i style="font-size: 70px; " class="fas fa-info-circle info"></i>
+                  </div>
+                </div>
+                {% endif %}
+                {% endfor %}    
+              </div>      
+            </div>
+          </div>
+      </div>  
+      {% endif %}
+
+
     {% block dashboard %}
 
 
@@ -428,6 +549,7 @@
 <!-- Page Specific JS File -->
 <script src="{% static 'assets/js/page/index-0.js' %}"></script>
 <script src="{% static 'assets/js/page/index.js' %}"></script>
+<script src="{% static 'js/editor.js' %"></script>
 <script src="{% static 'assets/js/page/components-statistic.js' %}"></script>
 <script src="{% static 'js/circle-progress.min.js' %}"></script>
 
@@ -442,5 +564,41 @@
   <script src="{% static 'js/script.js' %}" defer></script><!-- Custom Document Ready JS -->
   <script src="{% static 'js/script-dashboard.js' %}" defer></script><!-- Custom Document Ready for Dashboard Only JS -->
   
+ <script> 
+
+    setTimeout(function () {
+      document.getElementById("messages").style.display = "none";
+    }, 4000);
+    function hide(){
+    document.getElementById("messages").style.display = "none";
+    }
+  </script>
+
+<script type="text/javascript">
+
+  var  hours, min, sec;
+
+  var  clock = function(){
+
+    var date = new Date();
+
+    hours   = date.getHours().toString().length < 2 ? "0" + date.getHours() : date.getHours();
+    min   = date.getMinutes().toString().length < 2 ? "0" + date.getMinutes() : date.getMinutes();
+    sec   = date.getSeconds().toString().length < 2 ? "0" + date.getSeconds() : date.getSeconds();
+
+
+    var time = hours + " : " + min + " : " + sec;
+    
+    console.log(time);
+
+    document.getElementById('timer').innerHTML = time;
+  }
+
+  setInterval(function(){
+
+    clock();
+  }, 1000)
+  clock();
+</script> 
 </body>
 </html>

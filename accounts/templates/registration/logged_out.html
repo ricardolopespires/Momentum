@@ -12,8 +12,27 @@
     </title>
 </head>
 <body>
+
+
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.logo
+{
+    font-size: 60px;
+    font-family: 'Lobster', cursive;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+}
+.ponto
+{
+    color: #e4bb23;
+}        
+</style>
     <div class="logout">
         <img src="{% static 'img/logo.png' %}" alt="">
+        <div class="logo">Momentum<span class="ponto">.</span></div>
         <h1>Desconectado</h1>
         <p class=" line-1 anim-typewriter">Você foi desconectado com <strong>sucesso!!!!.</strong>  Você pode <a href="{% url 'login' %}">faça login novamente....</a>.</p>   </div>
   

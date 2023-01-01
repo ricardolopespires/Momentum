@@ -1,3 +1,4 @@
+'''
 from django.db import models
 from actor.models import Actor
 from  genre.models import Genre
@@ -136,3 +137,4 @@ class Like(models.Model):
 	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 	number = models.PositiveSmallIntegerField()
 	
+'''
