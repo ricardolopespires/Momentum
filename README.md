@@ -5,13 +5,13 @@ Momentum é especialmente projetado para atender a todas as necessidades de um S
 
 <p align = left'> 
                
-   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/ricardolopespires//Momentum">
+   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/ricardolopespires/Momentum">
     <img alt="Mozilla HTTP Observatory Grade" src="https://img.shields.io/mozilla-observatory/grade/github.com?publish">
-    <img alt="GitHub Language Count" src="https://img.shields.io/github/languages/count/ricardolopespires//Momentum"/>
+    <img alt="GitHub Language Count" src="https://img.shields.io/github/languages/count/ricardolopespires/Momentum"/>
     <img alt="" src="https://img.shields.io/github/repo-size/ricardolopespires//Momentum"/>
-    <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/ricardolopespires//Momentum"/>
-    <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/ricardolopespires//Momentume"/>
-    <img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/ricardolopespires//Momentum"/>                
+    <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/ricardolopespires/Momentum"/>
+    <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/ricardolopespires/Momentume"/>
+    <img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/ricardolopespires/Momentum"/>                
    <img align = right src="Banner_1.png" width = 600/>
 </p>
 
