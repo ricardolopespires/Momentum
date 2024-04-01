@@ -12,7 +12,7 @@ Momentum é especialmente projetado para atender a todas as necessidades de um S
     <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/ricardolopespires/Momentum"/>
     <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/ricardolopespires/Momentume"/>
     <img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/ricardolopespires/Momentum"/>                
-   <img align = right src="Banner_1.png" width = 600/>
+   <img align = right src="https://github.com/ricardolopespires/Momentum/blob/main/libraryy%20Online.png" width = 600/>
 </p>
 
 
